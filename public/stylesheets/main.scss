@@ -1,0 +1,106 @@
+// reset
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+// reset
+
+// GLOBAL
+.bg-dark {
+  background-color: #05111d;
+}
+h1 {
+  font-size: 40px;
+}
+p {
+  font-size: 20px;
+}
+.button-link {
+  border: 2px solid white;
+  padding: 5px 40px;
+  background-color: #00000000;
+  color: white;
+  font-size: 22px;
+}
+.nav {
+  height: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+
+  .nav-lg {
+    display: none;
+  }
+  .sidenav-toggle-button {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #040d1600;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 0 7px 0 0;
+  }
+
+  @media (min-width: 992px) {
+    justify-content: center;
+    a {
+      margin: 0 7px 0 7px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .nav-lg {
+      display: block;
+
+    }
+    .sidenav-toggle-button {
+      display: none;
+    }
+
+  }
+}
