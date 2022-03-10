@@ -3,8 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
+
+// mongodb database connection
+var mongoDB = `mongodb+srv://admin:${process.env.DBPASSWORD}@cluster0.omje9.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+// get the default connection
+var db = mongoose.connection;
+// bind connection to error event 
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var app = express();
 
