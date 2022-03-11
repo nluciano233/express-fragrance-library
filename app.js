@@ -4,11 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+require('dotenv').config(); 
 
 var indexRouter = require('./routes/index');
 
 // mongodb database connection
-var mongoDB = `mongodb+srv://admin:${process.env.DBPASSWORD}@cluster0.omje9.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
+var mongoDB = `mongodb+srv://admin:${process.env.DBPASSWORD}@cluster0.omje9.mongodb.net/fragrance_library?retryWrites=true&w=majority`;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 // get the default connection
 var db = mongoose.connection;
