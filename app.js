@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 require('dotenv').config(); 
 
 var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin')
 
 // mongodb database connection
 var mongoDB = `mongodb+srv://admin:${process.env.DBPASSWORD}@cluster0.omje9.mongodb.net/fragrance_library?retryWrites=true&w=majority`;
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
