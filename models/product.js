@@ -17,6 +17,10 @@ var ProductSchema = Schema({
     ref: 'Category',
     required: true
   },
+  image_id: {
+    type: String,
+    required: true
+  },
   price: Number,
   stock: Number
 });
