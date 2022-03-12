@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %> 
+  </head>
+  <body>
+    <%- include('../partials/nav') %> 
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form action="/admin/product/create" method="post" enctype="multipart/form-data">
+      <label for="product_name">Insert product name</label>
+      <input type="text" id="product_name">
+      <label for="product_description">Insert product description</label>
+      <input type="text" id="product_description">
+      <label for="product_category">Choose product category</label>
+      <select name="product_category" id="product_category">
+        <!-- loop categories -->
+        <option value="" disable selected hidden>Categories</option>
+        <% categories.map((e) => { %>
+          <option value=<%= e.name %>><%= e.name %></option>  
+        <% }) %> >
+      </select>
+      <label for="product_image">Choose your image</label>
+      <!-- multer saves the image to public/images/uploads -->
+      <input type="file" name="product_image" id="product_image">
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- <img src="/images/uploads/c11f29ce9769b7fabf33bdb3925bf1fe" alt="nice photo"> -->
+  </body>
+</html>
