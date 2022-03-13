@@ -7,8 +7,20 @@ const { body, validationResult } = require('express-validator');
 
 const inventory = (req, res, next) => {
 
-  res.render('admin/inventory', { title: 'Inventory' } )
-}
+  Product
+  .find()
+  .populate({path: 'category', select: 'name'}) // populate only with name
+  .exec(function(err, products) {
+    if (err) { return next(err); };
+    // successful so render
+    res.render('admin/inventory', 
+      {
+        title: 'Inventory',
+        products:products
+      });
+  });
+
+};
 
 const product_create_get = (req, res, next) => {
 
