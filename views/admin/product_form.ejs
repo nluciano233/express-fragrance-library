@@ -10,23 +10,34 @@
 
     <form action="/admin/product/create" method="post" enctype="multipart/form-data">
       <label for="product_name">Insert product name</label>
-      <input type="text" id="product_name">
+      <input type="text" id="product_name" name="product_name" value=<%= locals.product == undefined ? '' : product.name %> >
       <label for="product_description">Insert product description</label>
-      <input type="text" id="product_description">
+      <input type="text" id="product_description" name="product_description" value=<%= locals.product == undefined ? '' : product.description %>>
       <label for="product_category">Choose product category</label>
       <select name="product_category" id="product_category">
         <!-- loop categories -->
         <option value="" disable selected hidden>Categories</option>
         <% categories.map((e) => { %>
-          <option value=<%= e.name %>><%= e.name %></option>  
+          <option value=<%= e._id %>><%= e.name %></option>  
         <% }) %> >
       </select>
+      <label for="product_price">Insert product price</label>
+      <input type="number" id="product_price" name="product_price" value=<%= locals.product == undefined ? '' : product.price %>>
+      <label for="product_stock">Insert product stock</label>
+      <input type="number" id="product_stock" name="product_stock" value=<%= locals.product == undefined ? '' : product.stock %>>
       <label for="product_image">Choose your image</label>
       <!-- multer saves the image to public/images/uploads -->
       <input type="file" name="product_image" id="product_image">
       <button type="submit">Submit</button>
-    </form>
+      <% if (err) { %>
 
+        <!-- <% err.map((e) => { %> 
+          <span style="color: red;"><%= e.msg %></span>
+        <% }) %>  -->
+        <span style="color: red"><%= err[0].msg %></span>
+      <% } %> 
+    </form>
+    
     <!-- <img src="/images/uploads/c11f29ce9769b7fabf33bdb3925bf1fe" alt="nice photo"> -->
   </body>
 </html>
