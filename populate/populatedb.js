@@ -38,11 +38,12 @@ function categoryCreate(name, description, callback) {
 };
 
 // function to create the individual product
-function productCreate(name, description, category, price, stock, callback) {
+function productCreate(name, description, category, image_id, price, stock, callback) {
   var productdetail = { 
     name:name, 
     description:description, 
     category:category,
+    image_id:image_id,
     price:price,
     stock:stock 
   };
@@ -87,34 +88,34 @@ function createCategories(cb) {
 function createProducts(cb) {
   async.parallel([
     function(callback) {
-      productCreate('Favorite Character Death', 'Whenever you will feel the scent of this fragrance you will experience the same emotions you feel whenever your favorite character of the book dies.', categories[0], 69.99, 20, callback)
+      productCreate('Favorite Character Death', 'Whenever you will feel the scent of this fragrance you will experience the same emotions you feel whenever your favorite character of the book dies.', categories[0], 'undefined', 69.99, 20, callback)
     },
     function(callback) {
-      productCreate('Unfinished Storyline', "Experience the pleasure of reading a good book that doesn't have a complete storyline. But don't worry, the next book will never be published because the first one didn't make enough sales.", categories[1], 120.69, 46, callback)
+      productCreate('Unfinished Storyline', "Experience the pleasure of reading a good book that doesn't have a complete storyline. But don't worry, the next book will never be published because the first one didn't make enough sales.", categories[1], 'undefined', 120.69, 46, callback)
     },
     function(callback) {
-      productCreate('Poorly Written', 'By smelling the scent of this parfum you will feel like reading a poorly written book full of grammar errors.', categories[2], 16.99, 5, callback)
+      productCreate('Poorly Written', 'By smelling the scent of this parfum you will feel like reading a poorly written book full of grammar errors.', categories[2], 'undefined', 16.99, 5, callback)
     },
     function(callback) {
-      productCreate('Overpriced Book', "Discover our latest innovation: you will feel like reading a book that you paid way too much for, and that you don't even like that much. That wallet is going to be empty for a while!", categories[3], 1029.99, 2, callback)
+      productCreate('Overpriced Book', "Discover our latest innovation: you will feel like reading a book that you paid way too much for, and that you don't even like that much. That wallet is going to be empty for a while!", categories[3], 'undefined', 1029.99, 2, callback)
     },
     function(callback) {
-      productCreate('Birthday gift', "By smelling this scent you will experience the feeling of being gifted a book for your birthday. Too bad you hate its genre and don't like the author that much. It's going to accumulate a lot of dust on the shelf.", categories[4], 0.99, 1000, callback)
+      productCreate('Birthday gift', "By smelling this scent you will experience the feeling of being gifted a book for your birthday. Too bad you hate its genre and don't like the author that much. It's going to accumulate a lot of dust on the shelf.", categories[4], 'undefined', 0.99, 1000, callback)
     },
     function(callback) {
-      productCreate("Cicero", 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error eos laudantium commodi quo. Deserunt esse, ab porro nulla dolore molestiae molestias sint quae, magni sunt, architecto quisquam necessitatibus officia excepturi.', categories[0], 40.10, 1, callback)
+      productCreate("Cicero", 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error eos laudantium commodi quo. Deserunt esse, ab porro nulla dolore molestiae molestias sint quae, magni sunt, architecto quisquam necessitatibus officia excepturi.', categories[0], 'undefined', 40.10, 1, callback)
     },
     function(callback) {
-      productCreate('Boring', 'Smelling this parfum will make you fall asleep like the most boring book you ever read.', categories[3], 69.99, 20, callback)
+      productCreate('Boring', 'Smelling this parfum will make you fall asleep like the most boring book you ever read.', categories[3], 'undefined', 69.99, 20, callback)
     },
     function(callback) {
-      productCreate('Popular Saga', "It smells like you don't know why everyone liked this book so much. Maybe you're in time to refun it?", categories[2], 19.99, 140, callback)
+      productCreate('Popular Saga', "It smells like you don't know why everyone liked this book so much. Maybe you're in time to refun it?", categories[2], 'undefined', 19.99, 140, callback)
     },
     function(callback) {
-      productCreate('Dictionary', "This smell will instantly give you the knowledge of all words in the dictionary. Just a smell and you will gain the knowledge of every word ever existed.", categories[4], 69.99, 20, callback)
+      productCreate('Dictionary', "This smell will instantly give you the knowledge of all words in the dictionary. Just a smell and you will gain the knowledge of every word ever existed.", categories[4], 'undefined', 69.99, 20, callback)
     },
     function(callback) {
-      productCreate('Fresh Books', "Who doesn't like the smell of fresh books? We certainly do. With this perfume we captured the smell of fresh books and incapsulated it in a bottle so you can use it whenever you want!", categories[1], 5.99, 405, callback)
+      productCreate('Fresh Books', "Who doesn't like the smell of fresh books? We certainly do. With this perfume we captured the smell of fresh books and incapsulated it in a bottle so you can use it whenever you want!", categories[1], 'undefined', 5.99, 405, callback)
     },
   ], cb)
 };
