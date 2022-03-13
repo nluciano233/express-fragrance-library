@@ -72,7 +72,7 @@ const product_create_post = [
         name: req.body.product_name,
         description: req.body.product_description,
         category: req.body.product_category,
-        image_id: 'undefined yet',
+        image_id: req.file.filename,
         price: req.body.product_price,
         stock: req.body.product_stock
       }
@@ -80,7 +80,6 @@ const product_create_post = [
       
       if (!errors.isEmpty()) {
         // there are errors. render form again with sanitized values/error messages
-        console.log(errors)
 
         Category
         .find({}, 'name')
