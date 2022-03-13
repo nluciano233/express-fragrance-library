@@ -127,4 +127,27 @@ p {
     display: none;
   }
 }
+
+.inventory-page .products-main-container {
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
+  margin: 50px 0;
+}
+
+.inventory-page .products-main-container .product-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 5fr;
+      grid-template-columns: 1fr 5fr;
+}
+
+.inventory-page .products-main-container .product-container .image-container {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.inventory-page .products-main-container .product-container .image-container img {
+  max-height: inherit;
+}
 /*# sourceMappingURL=main.css.map */

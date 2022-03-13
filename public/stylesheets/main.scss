@@ -113,5 +113,23 @@ p {
 
 // --- INVENTORY --- 
 .inventory-page {
+  .products-main-container {
+    display: grid;
+    gap: 20px;
+    margin: 50px 0;
 
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 5fr;
+
+      .image-container {
+        max-height: 100px;
+        overflow: hidden;
+
+        img {
+          max-height: inherit;
+        }
+      }
+    }
+  }
 }

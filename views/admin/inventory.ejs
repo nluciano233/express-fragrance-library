@@ -8,22 +8,25 @@
     <div class="inventory-page">
       <h1><%= title %></h1>
       <p>Welcome to <%= title %></p>
-      <% products.map((e) => { %>
-        <% console.log(e) %>
-        <div class="product-container">
-          <div class="image-container">
-            <img src=<%= '/images/uploads/' + e.image_id %> alt="product photo">
+      <div class="products-main-container">
+
+        <% products.map((e) => { %>
+          <% console.log(e) %>
+          <div class="product-container">
+            <div class="image-container">
+              <img src=<%= '/images/uploads/' + e.image_id %> alt="product photo">
+            </div>
+            <div class="info-container">
+              <% console.log(e) %>
+              <h3><%= e.name %></h3>
+              <p><%= e.description %></p>
+              <span><%= e.category.name %></span>
+              <span><%= e.price %></span>
+              <span><%= e.stock %></span>
+            </div>
           </div>
-          <div class="info-container">
-            <% console.log(e) %>
-            <h3><%= e.name %></h3>
-            <p><%= e.description %></p>
-            <span><%= e.category.name %></span>
-            <span><%= e.price %></span>
-            <span><%= e.stock %></span>
-          </div>
-        </div>
-      <% }) %>
+          <% }) %>
+      </div>
     </div>
   </body>
 </html>
