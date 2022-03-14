@@ -76,9 +76,6 @@ const product_create_post = [
     // extract the validation errors from request
     const errors = validationResult(req);
     
-    
-    
-    
     // create a product object with escaped and trimmed data
     var product = new Product(
       {
@@ -86,7 +83,25 @@ const product_create_post = [
         description: req.body.product_description,
         category: req.body.product_category,
         image_id: req.file.filename,
-        price: req.body.product_price,
+        price: (()=> {
+          var e = req.body.product_price
+          var priceArray = e.split("")
+          var arrLength = priceArray.length
+          var commaIndex = e.indexOf('.')
+          var decimalIndex = commaIndex + 2
+
+          if (!priceArray[decimalIndex]) {
+            // if the price does not have the decimal number
+            return e + '0'
+          }
+          if (!e.includes('.')) {
+            // if the price does not have cents
+            return e + '.00'
+          }
+
+          // if everything is all right return the price
+          return e
+        })(),
         stock: req.body.product_stock
       }
       );
