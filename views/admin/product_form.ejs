@@ -28,6 +28,8 @@
       <label for="product_image">Choose your image</label>
       <!-- multer saves the image to public/images/uploads -->
       <input type="file" name="product_image" id="product_image" required>
+      <!-- hidden field to prevent spam from bots -->
+      <input type="text" name="anti_spam" style="display:none;">
       <button type="submit">Submit</button>
       <% if (locals.err) { %>
 
