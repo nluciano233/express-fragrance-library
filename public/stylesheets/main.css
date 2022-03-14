@@ -128,26 +128,87 @@ p {
   }
 }
 
+.inventory-page {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 10fr;
+      grid-template-columns: 1fr 10fr;
+      grid-template-areas: "nav options" "nav products";
+}
+
+.inventory-page .admin-nav-container {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: nav;
+  display: -ms-grid;
+  display: grid;
+  padding: 50px 0;
+  gap: 20px;
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-right: 1px solid black;
+}
+
+.inventory-page .product-options-container {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: options;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 2fr 6fr 2fr (1fr)[2];
+      grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
+  justify-items: center;
+  border-bottom: 1px solid black;
+}
+
 .inventory-page .products-main-container {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: products;
   display: -ms-grid;
   display: grid;
   gap: 20px;
-  margin: 50px 0;
 }
 
 .inventory-page .products-main-container .product-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 5fr;
-      grid-template-columns: 1fr 5fr;
+  -ms-grid-columns: 3fr 2fr 6fr 2fr (1fr)[2];
+      grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.inventory-page .products-main-container .product-container .image-container {
-  max-height: 100px;
-  overflow: hidden;
+.inventory-page .products-main-container .product-container .product-edit-container {
+  display: -ms-grid;
+  display: grid;
+  gap: 20px;
+  -ms-grid-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.inventory-page .products-main-container .product-container .image-container img {
-  max-height: inherit;
+.inventory-page .products-main-container .product-container .product-edit-container .edit-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
+  gap: 10px;
+}
+
+.inventory-page .products-main-container .product-container .product-edit-container .image-container img {
+  max-height: 100%;
+  max-width: 100%;
 }
 /*# sourceMappingURL=main.css.map */

@@ -6,24 +6,38 @@
   <body>
     <%- include('../partials/nav') %> 
     <div class="inventory-page">
-      <h1><%= title %></h1>
-      <p>Welcome to <%= title %></p>
+      <div class="admin-nav-container">
+        <a href="#">Products</a>
+        <a href="#">Categories</a>
+      </div>
+      <div class="product-options-container">
+        <div class="add-new-container">
+          <span>NEW</span>
+        </div>
+        <span>Name</span>
+        <span>Description</span>
+        <span>Category</span>
+        <span>Price</span>
+        <span>Stock</span>
+      </div>
       <div class="products-main-container">
 
         <% products.map((e) => { %>
-          <% console.log(e) %>
           <div class="product-container">
-            <div class="image-container">
-              <img src=<%= '/images/uploads/' + e.image_id %> alt="product photo">
+            <div class="product-edit-container">
+              <div class="edit-container">
+                <span>Edit</span>
+                <span>Delete</span>
+              </div>
+              <div class="image-container">
+                <img src=<%= '/images/uploads/' + e.image_id %> alt="product photo">
+              </div>
             </div>
-            <div class="info-container">
-              <% console.log(e) %>
-              <h3><%= e.name %></h3>
-              <p><%= e.description %></p>
+              <span><%= e.name %></span>
+              <span><%= e.description %></span>
               <span><%= e.category.name %></span>
               <span><%= e.price %></span>
               <span><%= e.stock %></span>
-            </div>
           </div>
           <% }) %>
       </div>
