@@ -12,7 +12,10 @@
       </div>
       <div class="product-options-container">
         <div class="add-new-container">
-          <span>NEW</span>
+          <a href="/admin/product/create">
+            <i class="bi bi-plus-circle"></i>
+            NEW
+          </a>
         </div>
         <span>Name</span>
         <span>Description</span>
@@ -26,18 +29,18 @@
           <div class="product-container">
             <div class="product-edit-container">
               <div class="edit-container">
-                <span>Edit</span>
-                <span>Delete</span>
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
               </div>
               <div class="image-container">
                 <img src=<%= '/images/uploads/' + e.image_id %> alt="product photo">
               </div>
             </div>
-              <span><%= e.name %></span>
-              <span><%= e.description %></span>
-              <span><%= e.category.name %></span>
-              <span><%= e.price %></span>
-              <span><%= e.stock %></span>
+              <span class="product-detail"><%= e.name %></span>
+              <span class="product-detail product-description"><%= e.description %></span>
+              <span class="product-detail"><%= e.category.name %></span>
+              <span class="product-detail">$<%= e.price %></span>
+              <span class="product-detail"><%= e.stock %></span>
           </div>
           <% }) %>
       </div>

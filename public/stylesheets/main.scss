@@ -30,6 +30,13 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  // -- make page use 100vh including child element that is going to use all the remaining height space
+  min-height: 100vh;
+  height: 1px;
+  display: flex;
+  flex-flow: column;
+  // -- make page use 100vh including child element that is going to use all the remaining height space
+  box-sizing: border-box;
 }
 ol, ul {
 	list-style: none;
@@ -114,6 +121,10 @@ p {
 // --- INVENTORY --- 
 .inventory-page {
   display: grid;
+  // -- make page use 100vh including child element that is going to use all the remaining height space
+  flex-grow: 1;
+  // -- make page use 100vh including child element that is going to use all the remaining height space
+  box-sizing: border-box;
   grid-template-columns: 1fr 10fr;
   grid-template-areas: 
     "nav options"
@@ -135,6 +146,8 @@ p {
     grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
     justify-items: center;
     border-bottom: 1px solid black;
+    height: min-content;
+    padding: 20px 0;
   }
 
   .products-main-container {
@@ -147,6 +160,15 @@ p {
       grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
       justify-items: center;
       align-items: center;
+      
+      .product-detail {
+        padding: 0 15px;
+        overflow-wrap: anywhere;
+      }
+      .product-description {
+        width: 100%;
+        box-sizing: border-box;
+      }
 
       .product-edit-container {
         display: grid;
