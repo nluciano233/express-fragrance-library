@@ -149,6 +149,9 @@ p {
           box-sizing: border-box;
   -ms-grid-columns: 1fr 10fr;
       grid-template-columns: 1fr 10fr;
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
       grid-template-areas: "nav options" "nav products";
 }
 
@@ -204,6 +207,10 @@ p {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  border-bottom: 1px solid black;
 }
 
 .inventory-page .products-main-container .product-container .product-detail {

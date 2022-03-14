@@ -126,6 +126,7 @@ p {
   // -- make page use 100vh including child element that is going to use all the remaining height space
   box-sizing: border-box;
   grid-template-columns: 1fr 10fr;
+  grid-template-rows: min-content;
   grid-template-areas: 
     "nav options"
     "nav products";
@@ -160,6 +161,8 @@ p {
       grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
       justify-items: center;
       align-items: center;
+      height: min-content;
+      border-bottom: 1px solid black;
       
       .product-detail {
         padding: 0 15px;
