@@ -2,6 +2,7 @@ var async = require('async');
 var Category = require('../models/category');
 var Product = require('../models/product');
 const { body, validationResult } = require('express-validator');
+var fs = require('fs');
 
 
 
@@ -93,18 +94,24 @@ const product_create_post = [
       if (!errors.isEmpty()) {
         // there are errors. render form again with sanitized values/error messages
 
-        Category
+        Category //we find the categories for the dropdown selection
         .find({}, 'name')
         .exec(function (err, list_categories) {
           if (err) {return next(err);}
-          // successful so render
+
           res.render('admin/product_form', 
-            {
-              title: 'Create product',
-              categories: list_categories,
-              product: product,
-              err: errors.array(),
-            });  
+          {
+            title: 'Create product',
+            categories: list_categories,
+            product: product,
+            err: errors.array(),
+          });
+
+          //delete the image that was saved in the host storage
+          fs.unlink('public/images/uploads/' + product.image_id, function(err) {
+            if (err) { return next(err); };
+          });
+
         });
         return;
       }
