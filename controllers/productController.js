@@ -147,8 +147,21 @@ const product_create_post = [
   ];
 
   const product_detail = (req, res, next) => {
-    console.log('yes')
-  }
+    
+    Product.findById(req.params.id)
+      .populate({path: 'category', select: 'name'}) // populate only with name
+      .exec( function(err, results) {
+        if (err) { return next(err); };
+        // successful so render
+        results.price = priceFormatter(results.price)
+        res.render('admin/product_detail', 
+          {
+            title: 'Edit product: ' + results.name,
+            product: results,
+          });
+      });
+
+  };
   
   
   module.exports = {

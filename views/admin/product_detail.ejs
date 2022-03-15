@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %> 
+  </head>
+  <body>
+    <%- include('../partials/nav') %> 
+    <div class="product-detail-page content">
+      <%= product.name %><br>
+      <%= product.description %><br>
+      <%= product.category.name %><br>
+      <%= product.image_id %><br>
+      <%= product.price %><br>
+      <%= product.stock %>
+    </div>
+  </body>
+</html>

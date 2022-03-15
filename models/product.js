@@ -35,5 +35,12 @@ ProductSchema
     return '/product/' + this._id;
   });
 
+// virtual for admin url for editing the product
+ProductSchema
+  .virtual('admin_url')
+  .get(function() {
+    return '/admin/product/' + this._id;
+  });
+
 // export model
 module.exports = mongoose.model('Product', ProductSchema)
