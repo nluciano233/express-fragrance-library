@@ -183,6 +183,9 @@ p {
         grid-template-columns: 1fr 2fr;
         justify-items: center;
         align-items: center;
+        box-sizing: border-box;
+        width: 100%;
+        overflow: hidden;
 
         .edit-container {
           display: grid;
@@ -192,11 +195,13 @@ p {
 
         .image-container {
 
+          max-height: 200px;
+          max-width: 200px;
+          overflow: hidden;
           
           img {
-            max-height: 100%;
-            max-width: 100%;
-
+            max-height: inherit;
+            max-width: inherit;
           }
         }
       }
