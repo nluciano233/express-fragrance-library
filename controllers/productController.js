@@ -143,11 +143,16 @@ const product_create_post = [
       };
     },
   ];
+
+  const product_detail = (req, res, next) => {
+    console.log('yes')
+  }
   
   
   module.exports = {
     inventory,
     product_create_get,
-    product_create_post
+    product_create_post,
+    product_detail
   }
   
