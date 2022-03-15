@@ -4,6 +4,7 @@ var multer = require('multer');
 var upload = multer({ dest: 'public/images/uploads' })
 
 var product_controller = require('../controllers/productController');
+var category_controller = require('../controllers/categoryController');
 
 // router.get('/inventory', function(req, res, next) {
 //   res.render('admin/inventory', { title: 'Inventory' });
@@ -22,6 +23,14 @@ router.post('/product/create', upload.single('product_image'), product_controlle
 
 // GET request for single product
 router.get('/product/:id', product_controller.product_detail);
+
+
+// CATEGORIES ROUTES
+
+// GET request for all categories
+router.get('/categories', category_controller.category_list);
+
+
 
 
 
