@@ -158,7 +158,6 @@ p {
   .products-main-container {
     grid-area: products;
     display: grid;
-    gap: 20px;
 
     .product-container {
       display: grid;
@@ -167,6 +166,7 @@ p {
       align-items: center;
       height: min-content;
       border-bottom: 1px solid black;
+      padding: 10px 0;
       
       .product-detail {
         padding: 0 15px;

@@ -139,12 +139,15 @@ p {
   }
 }
 
-.inventory-page {
-  display: -ms-grid;
-  display: grid;
+.content {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+}
+
+.inventory-page {
+  display: -ms-grid;
+  display: grid;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -ms-grid-columns: 1fr 10fr;
@@ -195,7 +198,6 @@ p {
   grid-area: products;
   display: -ms-grid;
   display: grid;
-  gap: 20px;
 }
 
 .inventory-page .products-main-container .product-container {
@@ -211,6 +213,7 @@ p {
   height: -moz-min-content;
   height: min-content;
   border-bottom: 1px solid black;
+  padding: 10px 0;
 }
 
 .inventory-page .products-main-container .product-container .product-detail {
