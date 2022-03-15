@@ -4,6 +4,26 @@ var Product = require('../models/product');
 const { body, validationResult } = require('express-validator');
 var fs = require('fs');
 
+// helper functions
+function priceFormatter(price) {
+  var e = price
+  var priceArray = e.split("")
+  var arrLength = priceArray.length
+  var commaIndex = e.indexOf('.')
+  var decimalIndex = commaIndex + 2
+
+  if (!priceArray[decimalIndex]) {
+    // if the price does not have the decimal number
+    return e + '0'
+  }
+  if (!e.includes('.')) {
+    // if the price does not have cents
+    return e + '.00'
+  }
+
+  // if everything is all right return the price
+  return e
+}
 
 
 const inventory = (req, res, next) => {
@@ -85,25 +105,7 @@ const product_create_post = [
           description: req.body.product_description,
           category: req.body.product_category,
           image_id: req.file.filename,
-          price: (()=> {
-            var e = req.body.product_price
-            var priceArray = e.split("")
-            var arrLength = priceArray.length
-            var commaIndex = e.indexOf('.')
-            var decimalIndex = commaIndex + 2
-
-            if (!priceArray[decimalIndex]) {
-              // if the price does not have the decimal number
-              return e + '0'
-            }
-            if (!e.includes('.')) {
-              // if the price does not have cents
-              return e + '.00'
-            }
-
-            // if everything is all right return the price
-            return e
-          })(),
+          price: priceFormatter(req.body.product_price),
           stock: req.body.product_stock
         }
         );
@@ -137,7 +139,7 @@ const product_create_post = [
           product.save(function(err) {
             if (err) { return next(err); }
             // successful, redirect to inventory
-            res.redirect('/admin/inventory')
+            res.redirect('admin/inventory')
           });
         };
       };
