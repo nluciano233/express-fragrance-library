@@ -116,14 +116,18 @@ p {
 
   }
 }
+
+.content {
+  // -- make page use 100vh including child element that is going to use all the remaining height space
+  flex-grow: 1;
+  // -- make page use 100vh including child element that is going to use all the remaining height space
+
+}
 // --- GLOBAL ---
 
 // --- INVENTORY --- 
 .inventory-page {
   display: grid;
-  // -- make page use 100vh including child element that is going to use all the remaining height space
-  flex-grow: 1;
-  // -- make page use 100vh including child element that is going to use all the remaining height space
   box-sizing: border-box;
   grid-template-columns: 1fr 10fr;
   grid-template-rows: min-content;
