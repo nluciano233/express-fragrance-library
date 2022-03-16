@@ -30,6 +30,9 @@ router.get('/product/:id', product_controller.product_detail);
 // GET request for all categories
 router.get('/categories', category_controller.category_list);
 
+// GET request for single category
+router.get('/category/:id', category_controller.category_detail);
+
 
 
 

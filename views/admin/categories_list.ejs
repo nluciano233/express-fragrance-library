@@ -5,8 +5,35 @@
   </head>
   <body>
     <%- include('../partials/nav') %> 
-    <div class="categories-page content">
-      <h1>test</h1>
+    <div class="categories-page layout content">
+      <div class="admin-nav-container">
+        <a href="/admin/inventory">Products</a>
+        <a href="/admin/categories">Categories</a>
+      </div>
+      <div class="category-options-container">
+        <div class="add-new-container">
+          <a href="/admin/product/create">
+            <i class="bi bi-plus-circle"></i>
+            NEW
+          </a>
+        </div>
+        <span>Name</span>
+        <span>Description</span>
+      </div>
+      <div class="categories-main-container">
+
+        <% categories.map((e)=> { %>
+          <div class="category-container">
+            <div class="edit-container">
+              <a href=<%= e.admin_url %>>Edit</a>
+              <a href="#">Delete</a>
+            </div>
+            <span class="category-detail"><%= e.name %></span>
+            <span class="category-detail product-description"><%= e.description %></span>
+          </div>
+        <% }) %>  
+
+      </div>
     </div>
   </body>
 </html>

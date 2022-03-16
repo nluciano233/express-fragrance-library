@@ -18,6 +18,22 @@ const category_list = (req, res, next) => {
 
 };
 
+const category_detail = (req, res, next) => {
+
+  Category.findById(req.params.id)
+    .exec( function(err, results) {
+      if (err) { return next(err); }
+      // successful so render
+      res.render('admin/category_detail',
+        {
+          title: 'Edit category: ' + results.name,
+          category: results
+        });
+    });
+
+};
+
 module.exports = {
-  category_list
+  category_list,
+  category_detail
 }
