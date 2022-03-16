@@ -139,7 +139,7 @@ const product_create_post = [
           product.save(function(err) {
             if (err) { return next(err); }
             // successful, redirect to inventory
-            res.redirect('admin/inventory')
+            res.redirect('/admin/inventory')
           });
         };
       };
