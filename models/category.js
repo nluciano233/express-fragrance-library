@@ -19,7 +19,9 @@ var CategorySchema = Schema({
 CategorySchema
   .virtual('url')
   .get(function() {
-    return '/category/' + this.name
+    var categoryName = this.name;
+    var hyphenCategoryName = categoryName.replace(/\s/g, '-');
+    return '/category/' + hyphenCategoryName
   });
 
 CategorySchema

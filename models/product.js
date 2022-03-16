@@ -32,14 +32,16 @@ var ProductSchema = Schema({
 ProductSchema
   .virtual('url')
   .get(function() {
-    return '/product/' + this._id;
+    var productName = this.name
+    var hyphenProductName = productName.replace(/\s/g, '-')
+    return '/product/' + this._id + hyphenProductName
   });
 
 // virtual for admin url for editing the product
 ProductSchema
   .virtual('admin_url')
   .get(function() {
-    return '/admin/product/' + this._id;
+    return '/admin/product/' + this._id
   });
 
 // export model
