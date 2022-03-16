@@ -149,11 +149,42 @@ const product_create_post = [
 
   const product_detail = (req, res, next) => {
     
-    Product.findById(req.params.id)
-      .populate({path: 'category', select: 'name'}) // populate only with name
-      .exec( function(err, results) {
+    // Product.findById(req.params.id)
+    //   .populate({path: 'category', select: 'name'}) // populate only with name
+    //   .exec( function(err, results) {
+    //     if (err) { return next(err); };
+    //     // successful so render
+    //     results.price = priceFormatter(results.price)
+    //     res.render('admin/product_detail', 
+    //       {
+    //         title: 'Edit product: ' + results.name,
+    //         product: results,
+    //       });
+    //   });
+
+      async.parallel({
+        product: function(callback) {
+          Product.findById(req.params.id)
+            .populate({path: 'category', select: 'name'}) // populate only with name
+            .exec(callback)
+        },
+        categories: function(callback) {
+          Category.find({}, 'name')
+          .exec(callback)
+        },
+      }, function(err, results) {
         if (err) { return next(err); };
         // successful so render
+        results.product.price = priceFormatter(results.product.price)
+        res.render('admin/product_detail',
+          {
+            title: 'Edit product: ' + results.product.name,
+            product: results.product,
+            categories: results.categories
+          });
+      });
+
+  };
         results.price = priceFormatter(results.price)
         res.render('admin/product_detail', 
           {
