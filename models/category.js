@@ -22,5 +22,11 @@ CategorySchema
     return '/category/' + this.name
   });
 
+CategorySchema
+  .virtual('admin_url')
+  .get(function() {
+    return '/admin/category/' + this._id
+  })
+
 // export model
 module.exports = mongoose.model('Category', CategorySchema)
