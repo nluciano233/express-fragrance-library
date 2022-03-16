@@ -126,7 +126,7 @@ p {
 // --- GLOBAL ---
 
 // --- INVENTORY --- 
-.inventory-page {
+.layout {
   display: grid;
   box-sizing: border-box;
   grid-template-columns: 1fr 10fr;
@@ -145,6 +145,10 @@ p {
     border-right: 1px solid black;
   }
 
+  
+}
+.inventory-page {
+  
   .product-options-container {
     grid-area: options;
     display: grid;
@@ -208,3 +212,48 @@ p {
     }
   }
 }
+
+.categories-page {
+  .category-options-container {
+    grid-area: options;
+    display: grid;
+    grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
+    justify-items: center;
+    border-bottom: 1px solid black;
+    height: min-content;
+    padding: 20px 0;
+  }
+
+  .categories-main-container {
+    grid-area: products;
+    display: grid;
+    grid-template-rows: min-content;
+    height: min-content;
+
+    .category-container {
+      display: grid;
+      grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
+      justify-items: center;
+      align-items: center;
+      border-bottom: 1px solid black;
+      padding: 10px 0;
+      height: min-content;
+      
+      .category-detail {
+        padding: 0 15px;
+        overflow-wrap: anywhere;
+      }
+      .product-description {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .edit-container {
+        display: grid;
+        grid-template-rows: min-content;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      }
+  }
+}
+

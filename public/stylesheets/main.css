@@ -145,7 +145,7 @@ p {
           flex-grow: 1;
 }
 
-.inventory-page {
+.layout {
   display: -ms-grid;
   display: grid;
   -webkit-box-sizing: border-box;
@@ -158,7 +158,7 @@ p {
       grid-template-areas: "nav options" "nav products";
 }
 
-.inventory-page .admin-nav-container {
+.layout .admin-nav-container {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
@@ -261,5 +261,73 @@ p {
 .inventory-page .products-main-container .product-container .product-edit-container .image-container img {
   max-height: inherit;
   max-width: inherit;
+}
+
+.categories-page .category-options-container {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: options;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 2fr 6fr 2fr (1fr)[2];
+      grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
+  justify-items: center;
+  border-bottom: 1px solid black;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  padding: 20px 0;
+}
+
+.categories-page .categories-main-container {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: products;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
+.categories-page .categories-main-container .category-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 2fr 6fr 2fr (1fr)[2];
+      grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
+.categories-page .categories-main-container .category-container .category-detail {
+  padding: 0 15px;
+  overflow-wrap: anywhere;
+}
+
+.categories-page .categories-main-container .category-container .product-description {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.categories-page .categories-main-container .category-container .edit-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 10px;
 }
 /*# sourceMappingURL=main.css.map */
