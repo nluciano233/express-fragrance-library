@@ -21,8 +21,12 @@ router.get('/product/create', product_controller.product_create_get)
 // POST request for creating a product
 router.post('/product/create', upload.single('product_image'), product_controller.product_create_post);
 
+// POST request to update product
+router.post('/product/update/:id', upload.single('product_image'), product_controller.product_update_post)
+
 // GET request for single product
 router.get('/product/:id', product_controller.product_detail);
+
 
 
 // CATEGORIES ROUTES
@@ -32,6 +36,7 @@ router.get('/categories', category_controller.category_list);
 
 // GET request for single category
 router.get('/category/:id', category_controller.category_detail);
+
 
 
 

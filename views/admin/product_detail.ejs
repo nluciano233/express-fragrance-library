@@ -12,6 +12,49 @@
       <%= product.image_id %><br>
       <%= product.price %><br>
       <%= product.stock %>
+
+      <form action=<%= '/admin/product/update/' + product._id %> method="post" enctype="multipart/form-data">
+        <label for="product_name">Insert product name</label>
+        <input type="text" id="product_name" name="product_name" required value=<%= locals.product == undefined ? '' : product.name %>>
+
+        <label for="product_description">Insert product description</label>
+        <textarea type="text" id="product_description" name="product_description"  required><%= locals.product == undefined ? '' : product.description %></textarea>
+
+        <label for="product_category">Choose product category</label>
+        <select name="product_category" id="product_category" required>
+          <!-- loop categories -->
+          <% categories.map((e) => { %>
+            <% if (e._id.toString() == product.category._id.toString()) { %>
+              <option value=<%= e._id %> selected><%= e.name %></option>
+            <% } else { %>
+              <option value=<%= e._id %> ><%= e.name %></option>
+            <% } %>
+          <% }) %> >
+        </select>
+
+        <label for="product_price">Insert product price</label>
+        <input type="number" id="product_price" name="product_price" step=".01" value=<%= locals.product == undefined ? '' : product.price %> required>
+
+        <label for="product_stock">Insert product stock</label>
+        <input type="number" id="product_stock" name="product_stock" value=<%= locals.product == undefined ? '' : product.stock %> required>
+
+        <label for="product_image">Choose your image (leave empty if you don't want to change the image)</label>
+        <!-- multer saves the image to public/images/uploads -->
+        <% if (locals.product.image_id) { %>
+          <img src=<%= '/images/uploads/' + product.image_id %> alt="product image">
+        <% }  else { %>
+          <span>Product has no image.</span>
+        <% } %>
+        <input type="file" name="product_image" id="product_image">
+
+        <input type="text" name="previous_product_image" value=<%= locals.product == undefined ? '' : product.image_id %> style="display:none;">
+        <!-- hidden field to prevent spam from bots -->
+        <input type="text" name="anti_spam" style="display:none;">
+        <button type="submit">Submit</button>
+        <% if (locals.err) { %>
+          <span style="color: red"><%= err[0].msg %></span>
+        <% } %> 
+      </form>
     </div>
   </body>
 </html>
