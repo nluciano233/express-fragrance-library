@@ -37,7 +37,8 @@ const inventory = (req, res, next) => {
     res.render('admin/inventory', 
       {
         title: 'Inventory',
-        products:products
+        products:products,
+        totalProducts: products.length
       });
   });
 
