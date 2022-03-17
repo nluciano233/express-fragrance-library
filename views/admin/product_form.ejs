@@ -32,10 +32,6 @@
       <input type="text" name="anti_spam" style="display:none;">
       <button type="submit">Submit</button>
       <% if (locals.err) { %>
-
-        <!-- <% err.map((e) => { %> 
-          <span style="color: red;"><%= e.msg %></span>
-        <% }) %>  -->
         <span style="color: red"><%= err[0].msg %></span>
       <% } %> 
     </form>

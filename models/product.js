@@ -25,7 +25,14 @@ var ProductSchema = Schema({
     type: String,
     required: true
   },
-  stock: Number
+  stock: {
+    type: Number,
+    required: true
+  },
+  image_url: {
+    type: String,
+    required: true
+  }
 });
 
 // virtual for URL

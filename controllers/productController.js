@@ -3,6 +3,7 @@ var Category = require('../models/category');
 var Product = require('../models/product');
 const { body, validationResult } = require('express-validator');
 var fs = require('fs');
+var cloudinary = require('cloudinary');
 
 // helper functions
 function priceFormatter(price) {
@@ -137,7 +138,7 @@ const product_create_post = [
               err: errors.array(),
             });
 
-            //delete the image that was saved in the host storage
+            //delete the image that was saved in the local storage
             fs.unlink('public/images/uploads/' + product.image_id, function(err) {
               if (err) { return next(err); };
             });
@@ -146,11 +147,52 @@ const product_create_post = [
           return;
         }
         else {
-          // data from form is valid, save product
-          product.save(function(err) {
-            if (err) { return next(err); }
-            // successful, redirect to inventory
-            res.redirect('/admin/inventory')
+
+          // Form data is valid, upload image to cloudinary
+          cloudinary.uploader.upload(`public/images/uploads/${product.image_id}`, function(results) {
+            if (results.error) { 
+              // there are errors. image did not successfully got uplaoded.
+              console.log(results)
+              Category //we find the categories for the dropdown selection
+              .find({}, 'name')
+              .exec(function (err, list_categories) {
+                if (err) {return next(err);}
+    
+                res.render('admin/product_form', 
+                {
+                  title: 'Create product',
+                  categories: list_categories,
+                  product: product,
+                  err: [{msg: 'Something went wrong. Retry later.'}],
+                });
+    
+                //delete the image that was saved in the local storage
+                fs.unlink('public/images/uploads/' + product.image_id, function(err) {
+                  if (err) { return next(err); };
+                });
+    
+              });
+              return;
+            };
+
+            // image got successfully uploaded to cloudinary.
+            console.log('Successfully uploaded to cloudinary: ', results)
+
+            // remove image from local storage since it has been successfully uploaded to the cloduinary host
+            fs.unlink('public/images/uploads/' + product.image_id, function(err) {
+              if (err) { return next(err); };
+            });
+
+            // add cloudinary image_url to the mongodb database
+            product.image_url = results.url
+
+            // save the product to the database
+            product.save(function(err) {
+              if (err) { return next(err); }
+              // successful, redirect to inventory
+              res.redirect('/admin/inventory')
+            });
+
           });
         };
       };
