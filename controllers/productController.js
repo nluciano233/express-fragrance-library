@@ -275,6 +275,14 @@ const product_create_post = [
 
         }
         else {
+          // data from form is valid, proceed
+          // if there is a new image submitted, delete the old one
+          if (req.file) {
+            fs.unlink('public/images/uploads/' + req.body.previous_product_image, function(err) {
+              if (err) { return next(err); };
+            });
+          };
+
           // form data is valid so update the record
           Product.findByIdAndUpdate(req.params.id, product)
             .exec( function(err, results) {
