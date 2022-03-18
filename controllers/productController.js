@@ -13,13 +13,13 @@ function priceFormatter(price) {
   var commaIndex = e.indexOf('.')
   var decimalIndex = commaIndex + 2
 
-  if (!priceArray[decimalIndex]) {
-    // if the price does not have the decimal number
-    return e + '0'
-  }
   if (!e.includes('.')) {
     // if the price does not have cents
     return e + '.00'
+  }
+  if (!priceArray[decimalIndex]) {
+    // if the price does not have the decimal number
+    return e + '0'
   }
 
   // if everything is all right return the price
@@ -333,6 +333,7 @@ const product_create_post = [
             
             // upload new image to cloudinary
             cloudinary.uploader.upload(`public/images/uploads/${product.image_id}`, function(results) {
+
               if (results.error) {
                 // there are errors. image did not successfully get uploaded.
                 console.log(results)
