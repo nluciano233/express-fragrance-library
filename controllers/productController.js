@@ -86,15 +86,19 @@ const product_create_post = [
     .isLength({ min: 3, max: 70 })
     .escape(),
   body('product_description', 'Product description must not be empty')
+    .not().isEmpty()
     .trim()
     .escape(),
   body('product_category', 'Product category must not be empty')
+    .not().isEmpty()
     .trim()
     .escape(),
   body('product_price', 'Product price must not be empty')
+    .not().isEmpty()
     .trim()
     .escape(),
   body('product_stock', 'Product stock must not be empty')
+    .not().isEmpty()
     .trim()
     .escape(),
 
@@ -252,15 +256,19 @@ const product_create_post = [
       .isLength({ min: 3, max: 70 })
       .escape(),
     body('product_description', 'Product description must not be empty')
+      .not().isEmpty()
       .trim()
       .escape(),
     body('product_category', 'Product category must not be empty')
+      .not().isEmpty()
       .trim()
       .escape(),
     body('product_price', 'Product price must not be empty')
+      .not().isEmpty()
       .trim()
       .escape(),
     body('product_stock', 'Product stock must not be empty')
+      .not().isEmpty()
       .trim()
       .escape(),
     
@@ -285,57 +293,109 @@ const product_create_post = [
             image_id: checkImgSubmit(req.file, req),
             price: priceFormatter(req.body.product_price),
             stock: req.body.product_stock,
+            image_url: req.body.product_image_url,
             _id: req.params.id, // required or a new ID will be assigned
           }
         );
 
         if (!errors.isEmpty()) {
-          // there are arrors, render form again with sanitized values/error messages
-          async.parallel({
-            product: function(callback) {
-              Product.findById(req.params.id)
-                .populate({path: 'category', select: 'name'}) // populate only with name
-                .exec(callback)
-            },
-            categories: function(callback) {
-              Category.find({}, 'name')
-              .exec(callback)
-            },
-          }, function(err, results) {
-            if (err) { return next(err); };
-            // successful so render
-            results.product.price = priceFormatter(results.product.price)
-            res.render('admin/product_detail',
-              {
-                title: 'Edit product: ' + results.product.name,
-                product: results.product,
-                categories: results.categories,
-                err: errors.array(),
-              });
-              return
-          });
+          // there are errors, render form again with sanitized values and error messages
 
-        }
-        else {
-          // data from form is valid, proceed
-          // if there is a new image submitted, delete the old one
-          if (req.file) {
-            fs.unlink('public/images/uploads/' + req.body.previous_product_image, function(err) {
-              if (err) { return next(err); };
+          Category.find({}, 'name')
+            .exec(function (err, results) {
+              if (err) { return next(err); }
+              // successful so render
+              res.render('admin/product_detail',
+                {
+                  title: 'Edit product: ' + product.name,
+                  product: product,
+                  categories: results,
+                  err: errors.array()
+                }
+              );
+
+              // there were errors so delete the image if the user submitted an new one
+              if (req.file) {
+                fs.unlink('public/images/uploads/' + product.image_id, function(err) {
+                  if (err) { return next(err); };
+                });
+              };
+
             });
+            return
           };
 
-          // form data is valid so update the record
-          Product.findByIdAndUpdate(req.params.id, product)
-            .exec( function(err, results) {
-              if (err) { return next(err); };
-              // successful so redirect
-              res.redirect('/admin/inventory')
-            })
-        }
-      };
-    },
+          // data from form is valid, proceed
+          
+          // if there is a new image submitted, delete the old one and upload the new one to cloudinary
+          if (req.file) {
+            console.log('New Image Submitted: ', product)
+            
+            // upload new image to cloudinary
+            cloudinary.uploader.upload(`public/images/uploads/${product.image_id}`, function(results) {
+              if (results.error) {
+                // there are errors. image did not successfully get uploaded.
+                console.log(results)
+                Category.find({}, 'name')
+                .exec(function(err, result) {
+                  if (err) { return next(err); };
+                  // successful so render
+                  res.render('admin/product_detail',
+                    {
+                      title: 'Edit product: ' + product.name,
+                      product: product,
+                      categories: result,
+                      err: [{msg: 'Something went wrong. Retry later.'}],
+                    }
+                  )
+                  
+                  // delete old image from local storage
+                  fs.unlink('public/images/uploads/' + req.body.previous_product_image, function(err) {
+                    if (err) { return next(err); };
+                  });
 
+                });
+                return;
+              };
+
+              // no errors in uploading image to cloudinary
+
+              // update product image_url with the url of the newly submitted image
+              product.image_url = results.url
+
+              // save the product to database
+              Product.findByIdAndUpdate(req.params.id, product)
+                .exec(function(err, result) {
+                  if (err) { return next(err); };
+                  // successful so render
+                  res.redirect('/admin/inventory');
+
+                  // image got successfully uploaded to cloudinary so delete the local stored one
+                  fs.unlink('public/images/uploads/' + req.file.filename, function(err) {
+                    if (err) { return next(err); };
+                  });
+                  return;
+                });
+
+            });
+
+          }
+          else {
+
+            // no new image submitted
+  
+            console.log('No new image submitted: ', product)
+  
+            // form data is valid so update the record
+            Product.findByIdAndUpdate(req.params.id, product)
+              .exec( function(err, results) {
+                if (err) { return next(err); };
+                // successful so redirect
+                res.redirect('/admin/inventory')
+              });
+          }
+        }
+      },
   ];
   
   
