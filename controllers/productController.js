@@ -42,8 +42,29 @@ function getCldProductImgName(req, imgUrl) { // the req is necessary so you can 
   var lastIndexOfSlash = url.lastIndexOf('/');
   var previousImageName = url.substring(lastIndexOfSlash + 1, lastIndexOfComma);
 
-  return previousImageName
+  return previousImageName;
 }
+
+// filter products that have a category that got deleted, add "error" as category name
+function filterDeletedCategory(e) {
+
+  if (Array.isArray(e)) {
+    e.forEach((prod) => {
+      console.log('single prod', prod)
+      if (prod.category == null) {
+        prod.category = {}
+        prod.category.name = "Error: category does not exist."
+      }
+    });
+  }
+  else {
+    if (e.category == null) {
+      e.category = {}
+      e.category.name = "Error: category does not exist."
+    };
+  };
+
+};
 
 
 
@@ -55,6 +76,9 @@ const inventory = (req, res, next) => {
   .exec(function(err, products) {
     if (err) { return next(err); };
     // successful so render
+
+    filterDeletedCategory(products);
+
     res.render('admin/inventory', 
       {
         title: 'Inventory',
@@ -214,19 +238,6 @@ const product_create_post = [
   ];
 
   const product_detail = (req, res, next) => {
-    
-    // Product.findById(req.params.id)
-    //   .populate({path: 'category', select: 'name'}) // populate only with name
-    //   .exec( function(err, results) {
-    //     if (err) { return next(err); };
-    //     // successful so render
-    //     results.price = priceFormatter(results.price)
-    //     res.render('admin/product_detail', 
-    //       {
-    //         title: 'Edit product: ' + results.name,
-    //         product: results,
-    //       });
-    //   });
 
       async.parallel({
         product: function(callback) {
@@ -242,6 +253,9 @@ const product_create_post = [
         if (err) { return next(err); };
         // successful so render
         results.product.price = priceFormatter(results.product.price)
+
+        filterDeletedCategory(results.product);
+
         res.render('admin/product_detail',
           {
             title: 'Edit product: ' + results.product.name,
