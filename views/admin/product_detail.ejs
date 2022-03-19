@@ -15,7 +15,7 @@
 
       <form action=<%= '/admin/product/update/' + product._id %> method="post" enctype="multipart/form-data">
         <label for="product_name">Insert product name</label>
-        <input type="text" id="product_name" name="product_name" required value=<%= locals.product == undefined ? '' : product.name %>>
+        <input type="text" id="product_name" name="product_name" required value="<%= locals.product == undefined ? '' :  product.name %>" >
 
         <label for="product_description">Insert product description</label>
         <textarea type="text" id="product_description" name="product_description"  required><%= locals.product == undefined ? '' : product.description %></textarea>
