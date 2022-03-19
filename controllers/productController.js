@@ -33,6 +33,16 @@ function checkImgSubmit(img, req) {
     return req.body.previous_product_image
   }
   return req.file.filename
+};
+
+// get product image name from cloudinary given the url
+function getCldProductImgName(req, imgUrl) { // the req is necessary so you can access the request inside the function. The request is accessed by passing it inside imgUrl
+  url = imgUrl;
+  var lastIndexOfComma = url.lastIndexOf('.');
+  var lastIndexOfSlash = url.lastIndexOf('/');
+  var previousImageName = url.substring(lastIndexOfSlash + 1, lastIndexOfComma);
+
+  return previousImageName
 }
 
 
@@ -379,14 +389,9 @@ const product_create_post = [
 
                   // delete old product image from cloudinary to save space
                   console.log('Previous imange url: ', req.body.previous_product_image_url)
-                  var cloudinaryPreviousImageName = (() => {
-                    url = req.body.previous_product_image_url;
-                    var lastIndexOfComma = url.lastIndexOf('.');
-                    var lastIndexOfSlash = url.lastIndexOf('/');
-                    var previousImageName = url.substring(lastIndexOfSlash + 1, lastIndexOfComma);
 
-                    return previousImageName
-                  })();
+                  var cloudinaryPreviousImageName = getCldProductImgName(req, req.body.previous_product_image_url);
+
                   cloudinary.uploader.destroy(cloudinaryPreviousImageName, function(result) { 
                     console.log(result) 
                   });
