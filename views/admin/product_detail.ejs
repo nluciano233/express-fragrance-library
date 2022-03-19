@@ -58,6 +58,10 @@
         <% if (locals.err) { %>
           <span style="color: red"><%= err[0].msg %></span>
         <% } %> 
+        <!-- delete product -->
+      </form>
+      <form action=<%= '/admin/product/delete/' + product._id %> method="post">
+        <button type="submit">Delete</button>
       </form>
     </div>
   </body>
