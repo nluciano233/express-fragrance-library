@@ -48,7 +48,10 @@
         <label for="product_image">Choose your image (leave empty if you don't want to change the image)</label>
         <input type="file" name="product_image" id="product_image">
 
+        <!-- Submits previous product local image name -->
         <input type="text" name="previous_product_image" value=<%= locals.product == undefined ? '' : product.image_id %> style="display:none;">
+        <!-- submits previous image url -->
+        <input type="text" name="previous_product_image_url" value=<%= locals.product == undefined? '' : product.image_url %> style="display:none;">
         <!-- hidden field to prevent spam from bots -->
         <input type="text" name="anti_spam" style="display:none;">
         <button type="submit">Submit</button>

@@ -329,7 +329,6 @@ const product_create_post = [
           
           // if there is a new image submitted, delete the old one and upload the new one to cloudinary
           if (req.file) {
-            console.log('New Image Submitted: ', product)
             
             // upload new image to cloudinary
             cloudinary.uploader.upload(`public/images/uploads/${product.image_id}`, function(results) {
@@ -364,6 +363,8 @@ const product_create_post = [
               // update product image_url with the url of the newly submitted image
               product.image_url = results.url
 
+              console.log('New Image Submitted: ', product)
+
               // save the product to database
               Product.findByIdAndUpdate(req.params.id, product)
                 .exec(function(err, result) {
@@ -375,6 +376,21 @@ const product_create_post = [
                   fs.unlink('public/images/uploads/' + req.file.filename, function(err) {
                     if (err) { return next(err); };
                   });
+
+                  // delete old product image from cloudinary to save space
+                  console.log('Previous imange url: ', req.body.previous_product_image_url)
+                  var cloudinaryPreviousImageName = (() => {
+                    url = req.body.previous_product_image_url;
+                    var lastIndexOfComma = url.lastIndexOf('.');
+                    var lastIndexOfSlash = url.lastIndexOf('/');
+                    var previousImageName = url.substring(lastIndexOfSlash + 1, lastIndexOfComma);
+
+                    return previousImageName
+                  })();
+                  cloudinary.uploader.destroy(cloudinaryPreviousImageName, function(result) { 
+                    console.log(result) 
+                  });
+
                   return;
                 });
 
