@@ -419,6 +419,28 @@ const product_create_post = [
         }
       },
   ];
+
+  const product_delete_post = (req, res, next) => {
+
+    Product.findByIdAndRemove(req.params.id)
+      .exec(function(err, results) {
+        if (err) { return next(err); };
+        // successful so render
+        console.log(results);
+        res.redirect('/admin/inventory');
+
+        
+        // get cloudinary product image name provided the image url
+        var cloudinaryPreviousImageName = getCldProductImgName(req, results.image_url)
+
+        // delete product image from cloudinary image host
+        cloudinary.uploader.destroy(cloudinaryPreviousImageName, function(result) { 
+          console.log(result) 
+        });
+        
+      })
+
+  }
   
   
   module.exports = {
@@ -426,6 +448,7 @@ const product_create_post = [
     product_create_get,
     product_create_post,
     product_detail,
-    product_update_post
+    product_update_post,
+    product_delete_post
   }
   

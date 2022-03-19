@@ -22,7 +22,10 @@ router.get('/product/create', product_controller.product_create_get)
 router.post('/product/create', upload.single('product_image'), product_controller.product_create_post);
 
 // POST request to update product
-router.post('/product/update/:id', upload.single('product_image'), product_controller.product_update_post)
+router.post('/product/update/:id', upload.single('product_image'), product_controller.product_update_post);
+
+// POST request to delete a product
+router.post('/product/delete/:id', product_controller.product_delete_post);
 
 // GET request for single product
 router.get('/product/:id', product_controller.product_detail);
