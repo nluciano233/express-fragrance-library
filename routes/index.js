@@ -1,9 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+var index_controller = require('../controllers/indexController');
+
+// GET home page. 
+router.get('/', index_controller.index);
+
+// GET shop page
+router.get('/shop', index_controller.shop);
+
+// GET about page
+router.get('/about', index_controller.about);
+
+// GET contact page
+router.get('/contact', index_controller.contact);
 
 module.exports = router;
