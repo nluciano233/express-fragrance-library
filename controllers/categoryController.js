@@ -18,6 +18,15 @@ const category_list = (req, res, next) => {
 
 };
 
+const category_create_get = (req, res, next) => {
+
+  res.render('admin/category_form', 
+    {
+      title: 'Create category',
+    }
+  )
+}
+
 const category_detail = (req, res, next) => {
 
   Category.findById(req.params.id)
@@ -35,5 +44,6 @@ const category_detail = (req, res, next) => {
 
 module.exports = {
   category_list,
-  category_detail
+  category_detail,
+  category_create_get
 }
