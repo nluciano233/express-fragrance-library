@@ -8,6 +8,23 @@
     <div class="product-detail-page content">
       <%= category.name %><br>
       <%= category.description %>
+
+      <form action=<%= '/admin/category/update/' + category._id %> method="post">
+        <label for="category_name">Category name: </label>
+        <input  type="text" 
+          name="category_name" 
+          id="category_name" 
+          value="<%= locals.category == undefined ? '' : category.name %>"
+        />
+
+        <label for="category_description">Category description: </label>
+        <textarea name="category_description" id="category_description" cols="30" rows="10"><%= locals.category == undefined ? '' : category.description %></textarea>
+
+        <!-- anti spam -->
+        <input type="text" name="anti_spam" hint="leave this empty" style="display:none;">
+
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </body>
 </html>
