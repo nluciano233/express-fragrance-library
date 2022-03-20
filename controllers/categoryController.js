@@ -161,10 +161,22 @@ const category_detail = (req, res, next) => {
 
 };
 
+const category_delete_post = (req, res, next) => {
+
+  Category.findByIdAndRemove(req.params.id)
+    .exec(function (err) {
+      if (err) { return next(err); };
+      // successful so redirect
+      res.redirect('/admin/categories');
+    });
+
+};
+
 module.exports = {
   category_list,
   category_detail,
   category_create_get,
   category_create_post,
   category_update_post,
+  category_delete_post,
 }

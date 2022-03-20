@@ -46,6 +46,9 @@ router.post('/category/create', category_controller.category_create_post);
 // POST request to update category
 router.post('/category/update/:id', category_controller.category_update_post);
 
+// POST request to delete a category
+router.post('/category/delete/:id', category_controller.category_delete_post);
+
 // GET request for single category
 router.get('/category/:id', category_controller.category_detail);
 

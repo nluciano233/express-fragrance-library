@@ -26,7 +26,9 @@
           <div class="category-container">
             <div class="edit-container">
               <a href=<%= e.admin_url %>>Edit</a>
-              <a href="#">Delete</a>
+              <form action=<%= '/admin/category/delete/' + e._id %> method="post">
+                <button type="submit">Delete</button>
+              </form>
             </div>
             <span class="category-detail"><%= e.name %></span>
             <span class="category-detail product-description"><%= e.description %></span>
