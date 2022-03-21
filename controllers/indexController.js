@@ -7,7 +7,20 @@ const index = (req, res, next) => {
 };
 
 const shop = (req, res, next) => {
-  res.render('shop', { title: "Shop" })
+};
+
+const product = (req, res, next) => {
+  Product.findById(req.params.id)
+    .exec( function(err, results) {
+      if (err) { return next(err); };
+      // successful so render
+      res.render('product',
+        {
+          title: results.name,
+          product: results
+        }
+      );
+    });
 };
 
 const about = (req, res, next) => {

@@ -41,7 +41,7 @@ ProductSchema
   .get(function() {
     var productName = this.name
     var hyphenProductName = productName.replace(/\s/g, '-')
-    return '/product/' + this._id + hyphenProductName
+    return '/product/' + hyphenProductName + '/' + this._id
   });
 
 // virtual for admin url for editing the product
