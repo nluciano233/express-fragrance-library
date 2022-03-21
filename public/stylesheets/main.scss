@@ -117,9 +117,57 @@ p {
   }
 }
 
-.footer-container {
+footer {
   color: white;
-  
+  box-sizing: border-box;
+  width: 100vw;
+  padding: 30px 5%;
+
+
+  .footer-container {
+    display: grid;
+    justify-content: start;
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+    gap: 20px;
+    width: 100%;
+
+    .menu-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5px;
+
+      .footer-nav {
+        display: grid;
+        gap: 3px;
+      }
+    }
+
+    .info-container {
+      display: grid;
+      gap: inherit;
+
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+    }
+    
+    h2 {
+      font-size: 1.4em;
+    }
+    a, span {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2em;
+    }
+
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 800px;
+    }
+  }
 }
 
 .content {
