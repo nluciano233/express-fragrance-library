@@ -109,10 +109,10 @@ function createProducts(cb) {
       productCreate('Boring', 'Smelling this parfum will make you fall asleep like the most boring book you ever read.', categories[3], 'undefined', '69.99', 20, callback)
     },
     function(callback) {
-      productCreate('Popular Saga', "It smells like you don't know why everyone liked this book so much. Maybe you're in time to refun it?", categories[2], 'undefined', '19.99', 140, callback)
+      productCreate('Popular Saga', "It smells like you don't know why everyone liked this book so much. Maybe you're in time to return it?", categories[2], 'undefined', '19.99', 140, callback)
     },
     function(callback) {
-      productCreate('Dictionary', "This smell will instantly give you the knowledge of all words in the dictionary. Just a smell and you will gain the knowledge of every word ever existed.", categories[4], 'undefined', '69.99', 20, callback)
+      productCreate('Dictionary', "This smell will instantly give you the knowledge of all words in the dictionary. Just a smell and you will gain the knowledge of every word ever existed. Some people need it more than others.", categories[4], 'undefined', '69.99', 20, callback)
     },
     function(callback) {
       productCreate('Fresh Books', "Who doesn't like the smell of fresh books? We certainly do. With this perfume we captured the smell of fresh books and incapsulated it in a bottle so you can use it whenever you want!", categories[1], 'undefined', '5.99', 405, callback)

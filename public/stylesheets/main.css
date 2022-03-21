@@ -139,6 +139,10 @@ p {
   }
 }
 
+.footer-container {
+  color: white;
+}
+
 .content {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -200,6 +204,14 @@ p {
   grid-area: products;
   display: -ms-grid;
   display: grid;
+  -ms-grid-rows: min-content;
+      grid-template-rows: -webkit-min-content;
+      grid-template-rows: min-content;
+  max-height: -webkit-min-content;
+  max-height: -moz-min-content;
+  max-height: min-content;
+  -ms-flex-line-pack: start;
+      align-content: start;
 }
 
 .inventory-page .products-main-container .product-container {

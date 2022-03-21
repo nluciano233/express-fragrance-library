@@ -117,6 +117,11 @@ p {
   }
 }
 
+.footer-container {
+  color: white;
+  
+}
+
 .content {
   // -- make page use 100vh including child element that is going to use all the remaining height space
   flex-grow: 1;
@@ -163,6 +168,9 @@ p {
   .products-main-container {
     grid-area: products;
     display: grid;
+    grid-template-rows: min-content;
+    max-height: min-content;
+    align-content: start;
 
     .product-container {
       display: grid;

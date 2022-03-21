@@ -41,9 +41,9 @@
                 <img src=<%= e.image_url %> alt="product photo">
               </div>
             </div>
-              <span class="product-detail"><%= e.name %></span>
-              <span class="product-detail product-description"><%= e.description %></span>
-              <span class="product-detail"><%= e.category.name %></span>
+              <span class="product-detail"><%- e.name %></span>
+              <span class="product-detail product-description"><%- e.description %></span>
+              <span class="product-detail"><%- e.category.name %></span>
               <span class="product-detail">$<%= e.price %></span>
               <span class="product-detail"><%= e.stock %></span>
           </div>
