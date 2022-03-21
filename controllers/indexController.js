@@ -7,6 +7,18 @@ const index = (req, res, next) => {
 };
 
 const shop = (req, res, next) => {
+
+  Product.find()
+    .exec( function(err, results) {
+      if (err) { return next(err); };
+      // successful so render
+      res.render('shop', 
+        { 
+          title: "Shop",
+          products: results,
+        }
+      );
+    });
 };
 
 const product = (req, res, next) => {
@@ -36,4 +48,5 @@ module.exports = {
   shop,
   about,
   contact,
+  product,
 }

@@ -7,5 +7,15 @@
     <%- include('partials/nav') %> 
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <% products.map((e) => { %>
+      <div class="product-container">
+        <a href=<%= e.url %>>
+          <img src="<%= e.image_url %>" alt="<%= e.name %> product image">
+          <h2><%= e.name %></h2>
+          <span><%= e.price %></span>
+        </a>
+      </div>
+    <% }) %>
   </body>
 </html>
