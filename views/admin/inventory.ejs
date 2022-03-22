@@ -1,54 +1,93 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('../partials/head') %> 
-  </head>
-  <body>
-    <%- include('../partials/nav') %> 
-    <div class="inventory-page content layout">
-      <div class="admin-nav-container">
-        <div>
-          <a href="/admin/inventory">Products</a>
-          <span>(<%= totalProducts %>)</span>
-        </div>
-        <a href="/admin/categories">Categories</a>
-      </div>
-      <div class="product-options-container">
-        <div class="add-new-container">
-          <a href="/admin/product/create">
-            <i class="bi bi-plus-circle"></i>
-            NEW
-          </a>
-        </div>
-        <span>Name</span>
-        <span>Description</span>
-        <span>Category</span>
-        <span>Price</span>
-        <span>Stock</span>
-      </div>
-      <div class="products-main-container">
+<%# the only content in the page should be put inside mobile-container and desktop-container. Everything else is shared layout between inventory and category_list page. %>
+<div class="admin-layout">
+  <div class="admin-nav-bar">
+    <a href="/admin/inventory">Products</a>
+    <a href="/admin/categories">Categories</a>
+  </div>
 
+  <div class="admin-content">
+    <div class="mobile-container">
+
+      <div class="mobile-inventory-page">
         <% products.map((e) => { %>
-          <div class="product-container">
-            <div class="product-edit-container">
-              <div class="edit-container">
-                <a href=<%= e.admin_url %>>Edit</a>
-                <form action=<%= '/admin/product/delete/' + e._id %> method="post">
-                  <button type="submit">Delete</button>
-                </form>
+          <a href=<%= e.admin_url %>>
+            <div class="product-container">
+
+              <div class="img-container">
+                <img src=<%= e.image_url %> alt="product image">
               </div>
-              <div class="image-container">
-                <img src=<%= e.image_url %> alt="product photo">
+
+              <div class="info-container">
+                <h2><%- e.name %></h2>
+                <div class="details-container">
+                  <div class="row">
+                    <span class="key">Category</span>
+                    <span class="value"><%= e.category.name %></span>
+                  </div>
+                  <div class="row">
+                    <span class="key">Price</span>
+                    <span class="value">$<%= e.price %></span>
+                  </div>
+                  <div class="row">
+                    <span class="key">Stock</span>
+                    <span class="value"><%= e.stock %></span>
+                  </div>
+                </div>
               </div>
+
+              <div class="icon-container">
+                <i class="bi bi-chevron-right"></i>
+              </div>
+
             </div>
-              <span class="product-detail"><%- e.name %></span>
-              <span class="product-detail product-description"><%- e.description %></span>
-              <span class="product-detail"><%- e.category.name %></span>
-              <span class="product-detail">$<%= e.price %></span>
-              <span class="product-detail"><%= e.stock %></span>
-          </div>
-          <% }) %>
+          </a>
+        <% }) %>
       </div>
+
     </div>
-  </body>
-</html>
+
+    <div class="desktop-container">
+
+      <div class="desktop-inventory-page">
+
+        <div class="product-labels-container">
+          <div class="add-new-container">
+            <a href="/admin/product/create">
+              <i class="bi bi-plus-circle"></i>&nbspNEW
+            </a>
+          </div>
+          <span>Name</span>
+          <span>Description</span>
+          <span>Category</span>
+          <span>Price</span>
+          <span>Stock</span>
+        </div>
+
+        <div class="products-main-container">
+          <% products.map((e) => { %>
+            <div class="product-container">
+              <div class="product-edit-container">
+                <div class="edit-container">
+                  <a href=<%= e.admin_url %>>Edit <i class="bi bi-pencil-square"></i></a>                  
+                  <!-- <form action=<%= '/admin/product/delete/' + e._id %> method="post">
+                    <button type="submit">Delete</button>
+                  </form> -->
+                </div>
+                <div class="image-container">
+                  <img src=<%= e.image_url %> alt="product photo">
+                </div>
+              </div>
+              <span><%- e.name %></span>
+              <span><%- e.description %></span>
+              <span class="align-center"><%- e.category.name %></span>
+              <span class="align-center">$<%= e.price %></span>
+              <span class="align-center"><%= e.stock %></span>
+            </div>
+            <% }) %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

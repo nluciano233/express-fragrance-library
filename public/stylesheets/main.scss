@@ -37,6 +37,12 @@ body {
   flex-flow: column;
   // -- make page use 100vh including child element that is going to use all the remaining height space
   box-sizing: border-box;
+  
+  @media (min-width: 1200px) {
+    // don'st adjust text-size on tablet portrait and desktop
+    // tablet was making text bigger, messing up the design
+    text-size-adjust: none;
+  }
 }
 ol, ul {
 	list-style: none;
@@ -56,14 +62,31 @@ table {
 // --- reset ---
 
 // --- GLOBAL ---
-.bg-dark {
-  background-color: #05111d;
-}
+
+// begin fonts
 h1 {
   font-size: 2.5em;
 }
+h2 {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+span {
+  font-size: 1em;
+}
 p {
   font-size: 1.25em;
+}
+// end fonts
+// begin variables
+$font-gray: #939393;
+// end variables
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+.bg-dark {
+  background-color: #05111d;
 }
 .button-link {
   border: 2px solid white;
@@ -166,6 +189,10 @@ footer {
     @media (min-width: 576px) {
       grid-template-columns: repeat(2, 1fr);
       max-width: 800px;
+
+      .menu-container {
+        justify-items: center;
+      }
     }
   }
 }
@@ -174,143 +201,196 @@ footer {
   // -- make page use 100vh including child element that is going to use all the remaining height space
   flex-grow: 1;
   // -- make page use 100vh including child element that is going to use all the remaining height space
-
 }
 // --- GLOBAL ---
 
 // --- INVENTORY --- 
-.layout {
+
+// admin-layout styles only the shared layout between inventory and category_list. specific styles  for non-shared should be applied with other custom classes.
+.admin-layout {
   display: grid;
-  box-sizing: border-box;
-  grid-template-columns: 1fr 10fr;
-  grid-template-rows: min-content;
+  max-width: 100%;
+  grid-template-columns: 100%;
   grid-template-areas: 
-    "nav options"
-    "nav products";
-  
-  .admin-nav-container {
-    grid-area: nav;
-    display: grid;
-    padding: 50px 0;
-    gap: 20px;
-    grid-template-rows: min-content;
-    justify-content: center;
-    border-right: 1px solid black;
-    align-content: start;
-  }
+    "nav"
+    "content";
 
-  
+    .admin-nav-bar {
+      grid-area: nav;
+      display: grid;
+      border-bottom: 1px solid black;
+      grid-template-columns: repeat(2, minmax(auto, 150px));
+      justify-content: center;
+      justify-items: center;
+      padding: 10px 0;
+
+    }
+    .admin-content {
+      grid-area: content;
+
+      .desktop-container {
+        display: none;
+      }
+
+      @media (min-width: 992px) {
+        // controls when to display mobile or desktop view
+        .mobile-container {
+          display: none;
+        }
+        .desktop-container {
+          display: grid;
+          box-sizing: border-box;
+          grid-template-columns: 100%;
+        }
+      }
+    }
+
+    @media (min-width: 992px) {
+      // controls the general layout of the shared elements
+      grid-template-areas: "nav content";
+      grid-template-columns: 1fr 10fr;
+
+      .admin-nav-bar {
+        border-bottom: none;
+        border-right: 1px solid black;
+        grid-template-columns: max-content;
+        grid-template-rows: min-content;
+        justify-content: center;
+        justify-items: start;
+        padding: 50px 10px;
+        gap: 10px;
+        max-width: 150px; // affects the width of gtc 1fr 10fr
+
+        a {
+          height: min-content;
+        }
+      }
+    }
 }
-.inventory-page {
-  
-  .product-options-container {
-    grid-area: options;
-    display: grid;
-    grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
-    justify-items: center;
-    border-bottom: 1px solid black;
-    height: min-content;
-    padding: 20px 0;
-  }
 
-  .products-main-container {
-    grid-area: products;
-    display: grid;
-    grid-template-rows: min-content;
-    max-height: min-content;
-    align-content: start;
+// begin inventory page
+.mobile-inventory-page{
+  display: grid;
+
+  a {
+    text-decoration: none;
+    color: black;
 
     .product-container {
       display: grid;
-      grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
+      grid-template-columns: 5fr 5fr 1fr;
+      grid-template-rows: minmax(auto, 180px);
       justify-items: center;
       align-items: center;
-      height: min-content;
+      overflow: hidden;
       border-bottom: 1px solid black;
-      padding: 10px 0;
+
       
-      .product-detail {
-        padding: 0 15px;
-        overflow-wrap: anywhere;
+      .img-container {
+        overflow: hidden;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 99%;
+          max-height: 99%;
+          object-fit: contain;
+          box-sizing: border-box;
+        }
       }
-      .product-description {
-        width: 100%;
-        box-sizing: border-box;
+      .info-container {
+        display: grid;
+        gap: 7px;
+
+        .details-container {
+          display: grid;
+          gap: 3px;
+
+          .row {
+            display: flex;
+            gap: 5px;
+            .key {
+              color: $font-gray;
+            }
+          }
+        }
       }
+    }
+  }
+
+  @media (min-width: 576px) {
+    // display .mobile-inventory-page items in 2 columns after exceeding 576px
+    grid-template-columns: 1fr 1fr;
+
+    // when displaying items in 2 columns, add a border-right ot odd elements
+    a:nth-child(odd) {
+      border-right: 1px solid black;
+    }
+  }
+}
+
+.desktop-inventory-page {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 100%;
+  
+  .product-labels-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr 1fr 1fr 1fr;
+    justify-items: center;
+    font-size: 1.2em;
+    border-bottom: 1px solid black;
+    padding: 20px 0;
+    .add-new-container {
+      a{
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .products-main-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: min-content;
+    overflow: hidden;
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 3fr 1fr 1fr 1fr;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid black;
+      padding: 5px 0;
+      .align-center {
+        text-align: center;
+      }
+
 
       .product-edit-container {
         display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr 2fr;
-        justify-items: center;
+        grid-template-columns: auto 1fr;
         align-items: center;
-        box-sizing: border-box;
-        width: 100%;
-        overflow: hidden;
 
         .edit-container {
-          display: grid;
-          grid-template-rows: min-content;
-          gap: 10px;
+          padding: 0 0 0 5px;
+          a {
+            text-decoration: none;
+            color: black;
+          }
         }
 
         .image-container {
-
-          max-height: 200px;
-          max-width: 200px;
           overflow: hidden;
-          
           img {
-            max-height: inherit;
-            max-width: inherit;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
           }
         }
       }
     }
   }
 }
-
-.categories-page {
-  .category-options-container {
-    grid-area: options;
-    display: grid;
-    grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
-    justify-items: center;
-    border-bottom: 1px solid black;
-    height: min-content;
-    padding: 20px 0;
-  }
-
-  .categories-main-container {
-    grid-area: products;
-    display: grid;
-    grid-template-rows: min-content;
-    height: min-content;
-
-    .category-container {
-      display: grid;
-      grid-template-columns: 3fr 2fr 6fr 2fr repeat(2, 1fr);
-      justify-items: center;
-      align-items: center;
-      border-bottom: 1px solid black;
-      padding: 10px 0;
-      height: min-content;
-      
-      .category-detail {
-        padding: 0 15px;
-        overflow-wrap: anywhere;
-      }
-      .product-description {
-        width: 100%;
-        box-sizing: border-box;
-      }
-      .edit-container {
-        display: grid;
-        grid-template-rows: min-content;
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      }
-  }
-}
+// end inventory page
 
