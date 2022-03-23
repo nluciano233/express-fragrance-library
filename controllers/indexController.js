@@ -3,7 +3,7 @@ var Category = require('../models/category');
 var Product = require('../models/product');
 
 const index = (req, res, next) => {
-  res.render('index', { title: "Mini's Fragrance Library" });
+  res.render('index');
 };
 
 const shop = (req, res, next) => {

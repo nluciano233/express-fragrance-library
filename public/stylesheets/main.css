@@ -44,7 +44,7 @@ body {
           box-sizing: border-box;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
   body {
     -webkit-text-size-adjust: none;
        -moz-text-size-adjust: none;
@@ -475,5 +475,78 @@ footer .footer-container a, footer .footer-container span {
      object-fit: contain;
   width: 100%;
   height: 100%;
+}
+
+.index-page {
+  width: 100vw;
+  height: calc(100vh - 50px);
+  background-image: url("https://live.staticflickr.com/65535/51955850546_38f771937f_o.jpg");
+  background-position: center 40%;
+  background-size: cover;
+}
+
+.index-page .overlay {
+  background-color: rgba(0, 0, 0, 0.45);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.index-page .overlay .title-container {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 30px;
+}
+
+.index-page .overlay .title-container .body-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.index-page .overlay .title-container .body-container a {
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 10px 50px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.index-page .overlay .title-container .body-container .description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 5px;
 }
 /*# sourceMappingURL=main.css.map */

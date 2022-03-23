@@ -38,7 +38,7 @@ body {
   // -- make page use 100vh including child element that is going to use all the remaining height space
   box-sizing: border-box;
   
-  @media (min-width: 1200px) {
+  @media (min-width: 992px) {
     // don'st adjust text-size on tablet portrait and desktop
     // tablet was making text bigger, messing up the design
     text-size-adjust: none;
@@ -206,6 +206,7 @@ footer {
 
 // --- INVENTORY --- 
 
+// BEGIN INVENTORY AND CATEGORY_LIST
 // admin-layout styles only the shared layout between inventory and category_list. specific styles  for non-shared should be applied with other custom classes.
 .admin-layout {
   display: grid;
@@ -393,4 +394,59 @@ footer {
   }
 }
 // end inventory page
+// END INVENTORY AND CATEGORY_LIST
 
+.index-page {
+  width: 100vw;
+  height: calc(100vh - 50px);
+  background-image: url('https://live.staticflickr.com/65535/51955850546_38f771937f_o.jpg');
+  background-position: center 40%;
+  background-size: cover;
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.45);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      
+      h1 {
+        // font-size: 3.5em;
+      }
+      .body-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
+        a {
+          color: white;
+          text-decoration: none;
+          border: 2px solid white;
+          padding: 10px 50px;
+          width: max-content;
+          // font-size: 1.3em;
+        }
+
+        .description {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          span {
+            // font-size: 1.5em;
+          }
+        }
+      }
+    }
+  }
+}
