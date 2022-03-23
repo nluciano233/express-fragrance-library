@@ -1,21 +1,38 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('partials/head') %> 
-  </head>
-  <body>
-    <%- include('partials/nav') %> 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<div class="shop-page">
+  
+  <div class="title-container">
+    <div class="img-container">
+      <img src="https://live.staticflickr.com/65535/51956325834_63fb6acf62_o.png" alt="frame">
+    </div>
+    <h1 class="title">SHOP</h1>
+    <div class="img-container">
+      <img src="https://live.staticflickr.com/65535/51956617165_872430cc02_o.png" alt="frame">
+    </div>
+  </div>
 
+  <div class="products-container">
     <% products.map((e) => { %>
-      <div class="product-container">
-        <a href=<%= e.url %>>
-          <img src="<%= e.image_url %>" alt="<%= e.name %> product image">
-          <h2><%= e.name %></h2>
-          <span><%= e.price %></span>
-        </a>
-      </div>
+      <a href=<%= e.url %>>
+        <div class="product-container">
+          <div class="product-img-container">
+            <img src=<%= e.image_url %> alt="product image">
+          </div>
+          <div class="product-info-container">
+            <h2><%- e.name %></h2>
+            <span>$<%= e.price %></span>
+          </div>
+        </div>
+      </a>
     <% }) %>
-  </body>
-</html>
+  </div>
+  
+  <!-- <% products.map((e) => { %>
+    <div class="product-container">
+      <a href=<%= e.url %>>
+        <img src="<%= e.image_url %>" alt="<%= e.name %> product image">
+        <h2><%= e.name %></h2>
+        <span><%= e.price %></span>
+      </a>
+    </div>
+  <% }) %> -->
+</div>
