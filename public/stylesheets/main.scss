@@ -79,7 +79,8 @@ p {
 }
 // end fonts
 // begin variables
-$font-gray: #939393;
+$font-gray: #C4C4C4;
+$line-gray: #DBDBDB;
 // end variables
 html, body {
   max-width: 100vw;
@@ -144,10 +145,18 @@ footer {
   color: white;
   box-sizing: border-box;
   width: 100vw;
-  padding: 30px 5%;
-
-
+  
+  .copyright-container {
+    padding: 5px;
+    background-color: #030b13;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+  }
+  
+  
   .footer-container {
+    padding: 30px 5%;
     display: grid;
     justify-content: start;
     grid-template-columns: 1fr;
@@ -211,6 +220,7 @@ footer {
 .admin-layout {
   display: grid;
   max-width: 100%;
+  height: 100%;
   grid-template-columns: 100%;
   grid-template-areas: 
     "nav"
@@ -219,12 +229,15 @@ footer {
     .admin-nav-bar {
       grid-area: nav;
       display: grid;
-      border-bottom: 1px solid black;
       grid-template-columns: repeat(2, minmax(auto, 150px));
       justify-content: center;
       justify-items: center;
+      border-bottom: 1px solid black;
       padding: 10px 0;
-
+      
+      @media (max-width: 992px) {
+        height: min-content;
+      }
     }
     .admin-content {
       grid-area: content;
@@ -394,6 +407,11 @@ footer {
   }
 }
 // end inventory page
+// begin categories page
+.mobile-categories-page {
+
+}
+// end categories page
 // END INVENTORY AND CATEGORY_LIST
 
 .index-page {
@@ -524,6 +542,169 @@ footer {
           }
         }
       }
+    }
+  }
+}
+
+.product-page {
+  // container for product page. it contains the styling for the mobile product page and the desktop product page. It will also contain the styling for the shared elements between mobile and desktop pages.
+  width: 100%;
+  box-sizing: border-box;
+  .remaining {
+    color: black;
+  }
+  .out-of-stock {
+    color: red;
+  }
+  .stock {
+    color: #3CC030;
+  }
+  .shipping-container {
+    color: $font-gray;
+  }
+
+  .mobile-product-page{
+    padding: 0 20px;
+
+    .section {
+      border-bottom: 1px solid #DBDBDB;
+      padding: 20px 10px;
+    }
+
+    .img {
+      text-align: center;
+      .img-container {
+        height: 320px;
+        img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    
+    .price {
+      display: grid;
+      gap: 10px;
+      .price-container {
+      }
+      .stock-container {
+        display: grid;
+        gap: 3px;
+        .shipping-container {
+          display: grid;
+        }
+      }
+      .cart-container {
+        display: grid;
+        gap: 5px;
+        .button {
+          height: 50px;
+        }
+        .cart {
+          background-color: black;
+          color: white;
+          border: none;
+        }
+        .wishlist {
+          border: 1px solid black;
+          background-color: white;
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    .description {
+      display: grid;
+      gap: 15px;
+      .sub-section {
+        display: grid;
+        gap: 5px;
+      }
+    }
+
+    // responsive design css
+    @media (min-width: 992px){
+      display: none;
+    }
+  }
+  .desktop-product-page {
+    width: 100%;
+    padding: 50px 0 20px 0;
+
+    .width-delimiter {
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin: 0 auto;
+
+      .img-container {
+        height: 400px;
+        img {
+          object-fit:contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .info-container {
+        
+        .section:not(:last-child) {
+          border-bottom: 1px solid $line-gray;
+        }
+        .section {
+          padding: 20px 10px; 
+        }
+
+        .price-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .stock-container {
+            .shipping-container {
+              display: grid;
+            }
+          }
+        }
+
+        .cart-buttons-container {
+          display: grid;
+          gap: 10px;
+          a {
+            text-decoration: none;
+          }
+          .button {
+            width: 250px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .cart {
+            background-color: black;
+            color: white;
+          }
+          .wishlist {
+            border: 1px solid black;
+            box-sizing: border-box;
+            color: black;
+          }
+        }
+
+        .description-container {
+          display: grid;
+          gap: 10px;
+          .sub-section {
+
+          }
+        }
+      }
+    }
+
+    // responsive design css
+    display: none;
+    @media (min-width: 992px){
+      display: block;
     }
   }
 }

@@ -14,7 +14,6 @@ const shop = (req, res, next) => {
       // successful so render
       res.render('shop', 
         { 
-          title: "Shop",
           products: results,
         }
       );
@@ -23,12 +22,12 @@ const shop = (req, res, next) => {
 
 const product = (req, res, next) => {
   Product.findById(req.params.id)
+    .populate({path: 'category'})
     .exec( function(err, results) {
       if (err) { return next(err); };
       // successful so render
       res.render('product',
         {
-          title: results.name,
           product: results
         }
       );

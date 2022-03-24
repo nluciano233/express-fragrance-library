@@ -1,17 +1,112 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('partials/head') %> 
-  </head>
-  <body>
-    <%- include('partials/nav') %> 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <h1><%= product.name %></h1>  
-    <%= product.description %>
-    <%= product.category %>
-    <%= product.price %>
-    <%= product.stock %>
-    <%= product.image_url %>
-  </body>
-</html>
+<!-- <h1><%= product.name %></h1>  
+<%= product.description %>
+<%= product.category %>
+<%= product.price %>
+<%= product.stock %>
+<%= product.image_url %> -->
+
+<div class="product-page">
+  <%# mobile view %>
+  <div class="mobile-product-page">
+
+    <section class="section img">
+      <h1><%- product.name %></h1>
+      <div class="img-container">
+        <img src=<%= product.image_url %> alt="product image">
+      </div>
+    </section>
+
+    <section class="section price">
+      <div class="price-container">
+        <h2>$<%= product.price %></h2>
+      </div>
+      <div class="stock-container">
+        <span class="stock">
+          <% if (product.stock > 5) {%>
+            In Stock
+          <% }  else if (product.stock < 5 && product.stock > 0) { %>
+            In stock: <span class="remaining">Only <%= product.stock %> remaining.</span>
+          <% } else { %>
+            <span class="out-of-stock">Out of stock.</span>
+          <% } %>
+        </span>
+        <span class="shipping-container">
+          <span>Shipping within 1-2 business days.</span>
+          <span>All prices include VAT.</span>
+        </span>
+      </div>
+      <div class="cart-container">
+        <button class="button cart">ADD TO CART</button>
+        <button class="button wishlist">WISHLIST</button>
+      </div>
+    </section>
+
+    <section class="section description">
+      <div class="sub-section category-container">
+        <h2><span>Category: </span><%- product.category.name %></h2>
+        <p><%= product.category.description %></p>
+      </div>
+      <div class="sub-section description-container">
+        <h2>Description</h2>
+        <p><%- product.description %></p>
+      </div>
+      <div class="help-container">
+        <p>You need help? <a href="#">Too bad</a>.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <%# desktop view %>
+  <div class="desktop-product-page">
+    <div class="width-delimiter">
+      <div class="img-container">
+        <img src=<%= product.image_url %> alt="product image">
+      </div>
+
+      <div class="info-container">
+        <div class="section">
+          <h1><%- product.name %></h1>
+        </div>
+
+        <div class="section price-container">
+          <span>$<%= product.price %></span>
+          <div class="stock-container">
+            <span class="stock">
+              <% if (product.stock > 5) {%>
+                In Stock
+              <% }  else if (product.stock < 5 && product.stock > 0) { %>
+                In stock: <span class="remaining">Only <%= product.stock %> remaining.</span>
+              <% } else { %>
+                <span class="out-of-stock">Out of stock.</span>
+              <% } %>
+            </span>
+            <div class="shipping-container">
+              <span>Shipping within 1-2 business days.</span>
+              <span>All prices include VAT.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section cart-buttons-container">
+          <a class="button cart" href="#">ADD TO CART</a>
+          <a class="button wishlist" href="#">WISHLIST</a>
+        </div>
+
+        <div class="section description-container">
+          <div class="sub-section">
+            <h2><span>Category: </span><%- product.category.name %></h2>
+            <p><%- product.category.description %></p>
+          </div>
+          <div class="sub-section">
+            <h2>Description</h2>
+            <p><%- product.description %></p>
+          </div>
+          <div class="sub-section">
+            <p>You need help? <a href="#">Too bad</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
