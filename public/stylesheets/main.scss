@@ -80,7 +80,9 @@ p {
 // end fonts
 // begin variables
 $font-gray: #C4C4C4;
+$font-dark-gray: #6D6D6D;
 $line-gray: #DBDBDB;
+$bg-dark: #05111d;
 // end variables
 html, body {
   max-width: 100vw;
@@ -776,3 +778,72 @@ footer {
     }
   }
 }
+
+ // BEGIN product_form and category_form
+ // this is enclosed in comments for organization purposes, these 2 pages will have shared classes
+.shared-create-page {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: 100%;
+  padding: 30px;
+  h1 {
+    text-align: center;
+  }
+
+  .create-form {
+    display: grid;
+    width: 100%;
+    padding: 30px 0;
+  
+    .form-button {
+      background-color: black;
+      border: none;
+      height: 30px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      margin: 20px 0 0 0;
+    }
+    
+    fieldset {
+      padding: 10px 0;
+      display: grid;
+      grid-template-columns: 1fr;
+  
+      label {
+        color: $font-dark-gray;
+        margin: 0 0 5px 0;
+      }
+      input {
+        height: 22px;
+      }
+      select {
+        height: 30px;
+      }
+      textarea {
+        height: 100px;
+      }
+  
+      legend {
+        // will be there for screen readers but it is not needed in the page design, therefore will be hidden to the eye but accessible to screen readers
+        position: absolute !important;
+        top: -9999px !important;
+        left: -9999px !important;
+      }
+    }
+  }
+}
+
+.create-product-page {
+
+}
+
+.create-category-page {
+
+}
+// END product_form && category_form

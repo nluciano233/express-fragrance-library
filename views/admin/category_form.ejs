@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('../partials/head') %> 
-  </head>
-  <body>
-    <%- include('../partials/nav') %> 
-    <div class="product-detail-page content">
-      <form action="/admin/category/create" method="post">
-        <label for="category_name">Category name: </label>
-        <input type="text" name="category_name" id="category_name">
+<div class="shared-create-page create-category-page">
+  <h1>Create category</h1>
+  <form class="create-form" action="/admin/category/create" method="post">
+    <fieldset>
+      <legend>Category name</legend>
+      <label for="category_name">Category name</label>
+      <input type="text" name="category_name" id="category_name">
+    </fieldset>
+    <fieldset>
+      <legend>Category description</legend>
+      <label for="category_description">Category description</label>
+      <textarea name="category_description" id="category_description" cols="30" rows="10"></textarea>
+    </fieldset>
+    <!-- anti spam -->
+    <input type="text" name="anti_spam" hint="leave this empty" style="display:none;">
+    <button class="form-button" type="submit">SUBMIT</button>
+  </form>
+</div>
 
-        <label for="category_description">Category description: </label>
-        <textarea name="category_description" id="category_description" cols="30" rows="10"></textarea>
-
-        <!-- anti spam -->
-        <input type="text" name="anti_spam" hint="leave this empty" style="display:none;">
-
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </body>
-</html>

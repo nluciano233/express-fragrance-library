@@ -81,7 +81,6 @@ const inventory = (req, res, next) => {
 
     res.render('admin/inventory', 
       {
-        title: 'Inventory',
         products:products,
         totalProducts: products.length
       });
@@ -98,7 +97,6 @@ const product_create_get = (req, res, next) => {
       // successful so render
       res.render('admin/product_form', 
         {
-          title: 'Create product',
           categories: list_categories,
           err: err
         });  
@@ -170,7 +168,6 @@ const product_create_post = [
 
             res.render('admin/product_form', 
             {
-              title: 'Create product',
               categories: list_categories,
               product: product,
               err: errors.array(),
@@ -198,7 +195,6 @@ const product_create_post = [
     
                 res.render('admin/product_form', 
                 {
-                  title: 'Create product',
                   categories: list_categories,
                   product: product,
                   err: [{msg: 'Something went wrong. Retry later.'}],

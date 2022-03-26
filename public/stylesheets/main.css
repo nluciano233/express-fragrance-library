@@ -958,4 +958,78 @@ footer .footer-container a, footer .footer-container span {
     display: block;
   }
 }
+
+.shared-create-page {
+  max-width: 800px;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  padding: 30px;
+}
+
+.shared-create-page h1 {
+  text-align: center;
+}
+
+.shared-create-page .create-form {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.shared-create-page .create-form .form-button {
+  background-color: black;
+  border: none;
+  height: 30px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 20px 0 0 0;
+}
+
+.shared-create-page .create-form fieldset {
+  padding: 10px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.shared-create-page .create-form fieldset label {
+  color: #6D6D6D;
+  margin: 0 0 5px 0;
+}
+
+.shared-create-page .create-form fieldset input {
+  height: 22px;
+}
+
+.shared-create-page .create-form fieldset select {
+  height: 30px;
+}
+
+.shared-create-page .create-form fieldset textarea {
+  height: 100px;
+}
+
+.shared-create-page .create-form fieldset legend {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
 /*# sourceMappingURL=main.css.map */
