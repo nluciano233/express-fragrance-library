@@ -7,6 +7,11 @@
   <div class="admin-content">
     <div class="mobile-container">
       <div class="mobile-categories-page">
+        <div class="add-new-container">
+          <a href="/admin/category/create">
+            <i class="bi bi-plus-circle"></i>&nbspNEW
+          </a>
+        </div>
         <% categories.map((e) => { %>
           <a href=<%= e.admin_url %>>
             <div class="category-container">

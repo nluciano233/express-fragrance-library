@@ -9,6 +9,11 @@
     <div class="mobile-container">
 
       <div class="mobile-inventory-page">
+        <div class="add-new-container">
+          <a href="/admin/product/create">
+            <i class="bi bi-plus-circle"></i>&nbspNEW
+          </a>
+        </div>
         <% products.map((e) => { %>
           <a href=<%= e.admin_url %>>
             <div class="product-container">
