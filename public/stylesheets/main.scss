@@ -80,13 +80,22 @@ p {
 // end fonts
 // begin variables
 $font-gray: #C4C4C4;
-$font-dark-gray: #6D6D6D;
+$font-dark-gray: #525252;
 $line-gray: #DBDBDB;
 $bg-dark: #05111d;
 // end variables
 html, body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+legend {
+  // will be there for screen readers but it is not needed in the page design, therefore will be hidden to the eye but accessible to screen readers
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+button {
+  cursor: pointer;
 }
 .bg-dark {
   background-color: #05111d;
@@ -779,8 +788,9 @@ footer {
   }
 }
 
- // BEGIN product_form and category_form
+ // BEGIN product_form, category_form
  // this is enclosed in comments for organization purposes, these 2 pages will have shared classes
+ // begin shared classes
 .shared-create-page {
   max-width: 800px;
   margin: 0 auto;
@@ -789,26 +799,15 @@ footer {
   justify-items: center;
   grid-template-columns: 100%;
   padding: 30px;
+
   h1 {
     text-align: center;
   }
-
   .create-form {
     display: grid;
     width: 100%;
     padding: 30px 0;
   
-    .form-button {
-      background-color: black;
-      border: none;
-      height: 30px;
-      color: white;
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      align-items: center;
-      margin: 20px 0 0 0;
-    }
     
     fieldset {
       padding: 10px 0;
@@ -829,21 +828,111 @@ footer {
         height: 100px;
       }
   
-      legend {
-        // will be there for screen readers but it is not needed in the page design, therefore will be hidden to the eye but accessible to screen readers
-        position: absolute !important;
-        top: -9999px !important;
-        left: -9999px !important;
+
+    }
+  }
+}
+.form-button {
+  background-color: black;
+  border: none;
+  height: 45px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 20px 0 0 0;
+}
+.delete-button {
+  background-color: red;
+  width: 100%;
+  border: none;
+  height: 45px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+// end shared classes
+// END product_form && category_form
+
+.product-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 30px;
+
+  h1 {
+    text-align: center;
+  }
+
+  .update-form {
+    display: grid;
+    width: 100%;
+
+    fieldset {
+      padding: 10px 0;
+      display: grid;
+      grid-template-columns: 1fr;
+  
+      label {
+        color: $font-dark-gray;
+        margin: 0 0 5px 0;
+      }
+      input {
+        height: 22px;
+      }
+      select {
+        height: 30px;
+      }
+      textarea {
+        height: 100px;
+      }
+    }
+    .img-container {
+      height: 250px;
+
+      img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .disclaimer-container {
+    display: grid;
+    color: $font-gray;
+    margin: 3px 0 10px 0;
+  }
+  .delete-container {
+    margin: 50px 0;
+  }
+}
+
+.category-detail-page {
+  .delete-container {
+    width: 100%;
+    .disclaimer-container {
+      display: grid;
+      color: $font-gray;
+      margin: 3px 0 10px 0;
+
+      form {
+        display: grid;
+        width: 100%;
+
+
       }
     }
   }
 }
 
-.create-product-page {
-
+#old {
+  display: none; //delete after development
 }
 
-.create-category-page {
 
-}
-// END product_form && category_form

@@ -94,6 +94,16 @@ html, body {
   overflow-x: hidden;
 }
 
+legend {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+button {
+  cursor: pointer;
+}
+
 .bg-dark {
   background-color: #05111d;
 }
@@ -984,24 +994,6 @@ footer .footer-container a, footer .footer-container span {
   padding: 30px 0;
 }
 
-.shared-create-page .create-form .form-button {
-  background-color: black;
-  border: none;
-  height: 30px;
-  color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 20px 0 0 0;
-}
-
 .shared-create-page .create-form fieldset {
   padding: 10px 0;
   display: -ms-grid;
@@ -1011,7 +1003,7 @@ footer .footer-container a, footer .footer-container span {
 }
 
 .shared-create-page .create-form fieldset label {
-  color: #6D6D6D;
+  color: #525252;
   margin: 0 0 5px 0;
 }
 
@@ -1027,9 +1019,127 @@ footer .footer-container a, footer .footer-container span {
   height: 100px;
 }
 
-.shared-create-page .create-form fieldset legend {
-  position: absolute !important;
-  top: -9999px !important;
-  left: -9999px !important;
+.form-button {
+  background-color: black;
+  border: none;
+  height: 45px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 20px 0 0 0;
+}
+
+.delete-button {
+  background-color: red;
+  width: 100%;
+  border: none;
+  height: 45px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.product-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  padding: 30px;
+}
+
+.product-detail-page h1 {
+  text-align: center;
+}
+
+.product-detail-page .update-form {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+}
+
+.product-detail-page .update-form fieldset {
+  padding: 10px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.product-detail-page .update-form fieldset label {
+  color: #525252;
+  margin: 0 0 5px 0;
+}
+
+.product-detail-page .update-form fieldset input {
+  height: 22px;
+}
+
+.product-detail-page .update-form fieldset select {
+  height: 30px;
+}
+
+.product-detail-page .update-form fieldset textarea {
+  height: 100px;
+}
+
+.product-detail-page .update-form .img-container {
+  height: 250px;
+}
+
+.product-detail-page .update-form .img-container img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.product-detail-page .disclaimer-container {
+  display: -ms-grid;
+  display: grid;
+  color: #C4C4C4;
+  margin: 3px 0 10px 0;
+}
+
+.product-detail-page .delete-container {
+  margin: 50px 0;
+}
+
+.category-detail-page .delete-container {
+  width: 100%;
+}
+
+.category-detail-page .delete-container .disclaimer-container {
+  display: -ms-grid;
+  display: grid;
+  color: #C4C4C4;
+  margin: 3px 0 10px 0;
+}
+
+.category-detail-page .delete-container .disclaimer-container form {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+}
+
+#old {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */

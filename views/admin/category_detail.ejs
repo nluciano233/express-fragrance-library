@@ -1,30 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('../partials/head') %> 
-  </head>
-  <body>
-    <%- include('../partials/nav') %> 
-    <div class="product-detail-page content">
-      <%= category.name %><br>
-      <%= category.description %>
+<div class="category-detail-page shared-create-page">
+  <h1>EDIT CATEGORY</h1>
 
-      <form action=<%= '/admin/category/update/' + category._id %> method="post">
-        <label for="category_name">Category name: </label>
-        <input  type="text" 
-          name="category_name" 
-          id="category_name" 
-          value="<%= locals.category == undefined ? '' : category.name %>"
-        />
-
-        <label for="category_description">Category description: </label>
-        <textarea name="category_description" id="category_description" cols="30" rows="10"><%= locals.category == undefined ? '' : category.description %></textarea>
-
-        <!-- anti spam -->
-        <input type="text" name="anti_spam" hint="leave this empty" style="display:none;">
-
-        <button type="submit">Submit</button>
-      </form>
+  <form class="create-form" action=<%= '/admin/category/update/' + category._id %> method="post">
+    <fieldset>
+      <legend>Category name</legend>
+      <label for="category_name">Category name: </label>
+      <input  type="text" 
+        name="category_name" 
+        id="category_name" 
+        value="<%= locals.category == undefined ? '' : category.name %>"
+      />
+    </fieldset>
+    <fieldset>
+      <legend>Category description</legend>
+      <label for="category_description">Category description: </label>
+      <textarea name="category_description" id="category_description" cols="30" rows="10"><%= locals.category == undefined ? '' : category.description %></textarea>
+    </fieldset>
+    <!-- anti spam -->
+    <input type="text" name="anti_spam" hint="leave this empty" style="display:none;">
+    <button class="form-button" type="submit">Submit</button>
+  </form>
+  <div class="delete-container">
+    <h2>Delete category</h2>
+    <div class="disclaimer-container">
+      <span>Attention! This operation can't be undone.</span>
     </div>
-  </body>
-</html>
+    <form class="update-form" action=<%= '/admin/category/delete/' + category._id %> method="post">
+      <button class="delete-button" type="submit">Delete</button>
+    </form>
+  </div>
+</div>
