@@ -104,23 +104,32 @@ html, body {
   width: 100%;
   min-height: 50px;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
 
 
   .nav-lg {
     display: none;
   }
-  .sidenav-toggle-button {
+
+  .header-button {
     height: 40px;
     display: flex;
     align-items: center;
     background-color: #040d1600;
     color: white;
-    border: 1px solid white;
-    border-radius: 5px;
-    margin: 0 7px 0 0;
+    border: none;
+    font-size: 37px;
+    padding: 0 10px;
   }
+  // .cart-button {
+  //   border: none;
+  //   font-size: 37px;
+  // }
+  // .sidenav-toggle-button {
+  //   font-size: 37px;
+  //   i {font-size: 37px;}
+  // }
 
   @media (min-width: 992px) {
     justify-content: center;
@@ -134,7 +143,7 @@ html, body {
       display: block;
 
     }
-    .sidenav-toggle-button {
+    .header-button {
       display: none;
     }
 

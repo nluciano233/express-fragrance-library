@@ -116,9 +116,9 @@ html, body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -128,7 +128,7 @@ html, body {
   display: none;
 }
 
-.nav .sidenav-toggle-button {
+.nav .header-button {
   height: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -138,9 +138,9 @@ html, body {
           align-items: center;
   background-color: #040d1600;
   color: white;
-  border: 1px solid white;
-  border-radius: 5px;
-  margin: 0 7px 0 0;
+  border: none;
+  font-size: 37px;
+  padding: 0 10px;
 }
 
 @media (min-width: 992px) {
@@ -157,7 +157,7 @@ html, body {
   .nav .nav-lg {
     display: block;
   }
-  .nav .sidenav-toggle-button {
+  .nav .header-button {
     display: none;
   }
 }
