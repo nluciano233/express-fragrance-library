@@ -1,41 +1,83 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <%- include('../partials/head') %> 
-  </head>
-  <body>
-    <%- include('../partials/nav') %> 
-    <div class="categories-page layout content">
-      <div class="admin-nav-container">
-        <a href="/admin/inventory">Products</a>
-        <a href="/admin/categories">Categories</a>
-      </div>
-      <div class="category-options-container">
-        <div class="add-new-container">
-          <a href="/admin/category/create">
-            <i class="bi bi-plus-circle"></i>
-            NEW
-          </a>
-        </div>
-        <span>Name</span>
-        <span>Description</span>
-      </div>
-      <div class="categories-main-container">
+<div class="admin-layout">
+  <div class="admin-nav-bar">
+    <a href="/admin/inventory">Products</a>
+    <a href="/admin/categories">Categories</a>
+  </div>
 
-        <% categories.map((e)=> { %>
-          <div class="category-container">
-            <div class="edit-container">
-              <a href=<%= e.admin_url %>>Edit</a>
-              <form action=<%= '/admin/category/delete/' + e._id %> method="post">
-                <button type="submit">Delete</button>
-              </form>
+  <div class="admin-content">
+    <div class="mobile-container">
+      <div class="mobile-categories-page">
+        <% categories.map((e) => { %>
+          <a href=<%= e.admin_url %>>
+            <div class="category-container">
+              <h2><%- e.name %></h2>
+              <i class="bi bi-chevron-right"></i>
             </div>
-            <span class="category-detail"><%= e.name %></span>
-            <span class="category-detail product-description"><%= e.description %></span>
+          </a>
+        <% }) %> 
+      </div>
+    </div>
+
+    <div class="desktop-container">
+      <div class="desktop-categories-page">
+
+        <div class="categories-labels-container">
+          <div class="add-new-container">
+            <a href="/admin/category/create">
+              <i class="bi bi-plus-circle"></i>&nbspNEW
+            </a>
           </div>
-        <% }) %>  
+          <span>Name</span>
+          <span>Description</span>
+        </div>
+
+        <div class="categories-main-container">
+          <% categories.map((e) => { %>
+              <div class="category-container">
+                <div class="edit-container">
+                  <a href=<%= e.admin_url %>>
+                    Edit <i class="bi bi-pencil-square"></i>
+                  </a>
+                </div>
+                <span><%- e.name %></span>
+                <span><%- e.description %></span>
+              </div>
+          <% }) %>
+        </div>
 
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+<!-- <div class="categories-page layout content">
+  <div class="admin-nav-container">
+    <a href="/admin/inventory">Products</a>
+    <a href="/admin/categories">Categories</a>
+  </div>
+  <div class="category-options-container">
+    <div class="add-new-container">
+      <a href="/admin/category/create">
+        <i class="bi bi-plus-circle"></i>
+        NEW
+      </a>
+    </div>
+    <span>Name</span>
+    <span>Description</span>
+  </div>
+  <div class="categories-main-container">
+
+    <% categories.map((e)=> { %>
+      <div class="category-container">
+        <div class="edit-container">
+          <a href=<%= e.admin_url %>>Edit</a>
+          <form action=<%= '/admin/category/delete/' + e._id %> method="post">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+        <span class="category-detail"><%= e.name %></span>
+        <span class="category-detail product-description"><%= e.description %></span>
+      </div>
+    <% }) %>  
+
+  </div>
+</div> -->
