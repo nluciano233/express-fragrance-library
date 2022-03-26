@@ -291,12 +291,14 @@ footer {
   display: grid;
 
   .add-new-container {
-    grid-column: 1/3;
     border-bottom: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
+    @media(min-width: 578px) {
+      grid-column: 1/3;
+    }
   }
 
   a {
@@ -425,14 +427,14 @@ footer {
 .mobile-categories-page {
 
   .add-new-container {
-    grid-column: 1/3;
     border-bottom: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
+
   }
-  
+
   a {
     text-decoration: none;
     color: black;
