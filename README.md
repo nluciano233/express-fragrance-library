@@ -128,7 +128,9 @@ If no new image is submitted, we just update the fields that got edited. The for
 
 After cloning the repository, execute `$ npm install` to install all the dependencies. 
 
-Connect the app to your own MongoDb database by editing the `mongoDB` variable inside `app.js`.
+Connect the app to your own MongoDb database by editing accordingly the `mongoDB` variable inside `app.js`.
+
+You should also create a `.env` file and put inside of it `DBPASSWORD` with your mongodb database password and `CLOUDINARY_URL` with the config to connect to your cloudinary account.
 
 Then execute `$ npm run serverstart` to start the server.
 
